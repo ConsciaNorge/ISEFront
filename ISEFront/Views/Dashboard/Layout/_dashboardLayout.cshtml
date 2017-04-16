@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html lang="en" ng-app="dashboard" data-framework="typescript">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>@ViewBag.Title</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    @Styles.Render("~/Content/dashboard/css")
+    @Styles.Render("~/Content/light-bootstrap-dashboard")
+    @Styles.Render("~/Content/animate")
+    @Styles.Render("~/Content/fonts")
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+
+    <div class="wrapper">
+
+        @RenderPage("_sidePanel.cshtml")
+
+        <div class="main-panel">
+            @RenderPage("_navigation.cshtml")
+
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+
+
+            @RenderPage("_footer.cshtml")
+
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angular-ui")
+    @Scripts.Render("~/bundles/light-bootstrap-dashboard")
+
+    <script src="~/js/interfaces/Dashboard/IDashboardScope.js"></script>
+    <script src="~/js/interfaces/Dashboard/IDashboardSidePanelItemStorage.js"></script>
+    <script src="~/js/models/Dashboard/DashboardSidePanelItem.js"></script>
+    <script src="~/js/services/Dashboard/DashboardSidePanelItemStorage.js"></script>
+    <script src="~/js/controllers/dashboard/DashboardController.js"></script>
+    <script src="~/js/controllers/dashboard/SidePanelController.js"></script>
+    <script src="~/js/app/app.js"></script>
+</body>
+
+@*<!--  Checkbox, Radio & Switch Plugins -->
+<script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+
+<!--  Charts Plugin -->
+<script src="assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="assets/js/bootstrap-notify.js"></script>
+
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="assets/js/light-bootstrap-dashboard.js"></script>*@
+
+
+</html>

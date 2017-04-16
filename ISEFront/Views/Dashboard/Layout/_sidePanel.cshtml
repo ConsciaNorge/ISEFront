@@ -1,0 +1,27 @@
+﻿<div class="sidebar" data-color="purple" data-image="content/light-bootstrap-dashboard/images/sidebar-5.jpg" ng-controller="SidePanelController as vm">
+
+    <!--
+
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+
+    -->
+
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="http://www.conscia.com" class="simple-text">
+                ISEFront
+            </a>
+        </div>
+
+        <ul class="nav" ng-repeat="item in vm.sidePanelItems">
+            <li class="active">
+                <a ng-href="{{item.url}}">
+                    <i class="pe-7s-graph"></i>
+                    <p>{{item.title}}</p>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>

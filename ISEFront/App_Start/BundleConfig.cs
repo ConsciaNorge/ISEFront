@@ -23,9 +23,35 @@ namespace ISEFront
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                "~/Scripts/angular.min.js",
+                "~/Scripts/angular-route.min.js",
+                "~/Scripts/angular-sanitize.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular-ui").Include(
+                "~/Scripts/angular-ui/ui-bootstrap.min.js",
+                "~/Scripts/angular-ui/ui-bootstrap-tpls.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/dashboard/css").Include(
+                      "~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Content/light-bootstrap-dashboard").Include(
+                "~/Content/light-bootstrap-dashboard/light-bootstrap-dashboard.css",
+                "~/Content/light-bootstrap-dashboard/pe-icon-7-stroke.css"));
+
+            bundles.Add(new StyleBundle("~/Content/animate").Include(
+                "~/Content/animate.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/fonts").Include(
+                "~/Content/font-awesome.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/light-bootstrap-dashboard").Include(
+                "~/Scripts/light-bootstrap-dashboard/light-bootstrap-dashboard.js",
+                "~/Scripts/light-bootstrap-dashboard/bootstrap-notify.js"));
         }
     }
 }
