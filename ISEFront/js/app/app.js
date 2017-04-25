@@ -7,9 +7,22 @@
 var dashboard;
 (function (dashboard) {
     'use strict';
-    var dashboardApp = angular.module('dashboard', [])
-        .controller('SidePanelController', dashboard.SidePanelController)
+    var dashboardApp = angular.module('dashboard', [
+        'ui.bootstrap',
+        'nonStringSelect',
+        'dateTimeSandbox',
+        'ngFileUpload'
+    ])
+        .controller('CertificatesController', dashboard.CertificatesController)
         .controller('DashboardController', dashboard.DashboardController)
-        .service('DashboardSidePanelItemStorage', dashboard.DashboardSidePanelItemStorage);
+        .controller('EditServiceProviderDialogController', dashboard.EditServiceProviderDialogController)
+        .controller('FirstRunController', dashboard.FirstRunController)
+        .controller('IdentityProviderController', dashboard.IdentityProviderController)
+        .controller('ServiceProvidersController', dashboard.ServiceProvidersController)
+        .controller('SidePanelController', dashboard.SidePanelController)
+        .service('DashboardSidePanelItemStorage', dashboard.DashboardSidePanelItemStorage)
+        .service('IdentityProviderStorage', dashboard.IdentityProviderStorage)
+        .service('ServiceProvidersBriefItemStorage', dashboard.ServiceProvidersBriefItemStorage)
+        .service('ServiceProvidersStorage', dashboard.ServiceProvidersStorage);
 })(dashboard || (dashboard = {}));
 //# sourceMappingURL=app.js.map

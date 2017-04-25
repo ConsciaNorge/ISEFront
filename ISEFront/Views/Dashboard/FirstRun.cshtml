@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "Initial installation";
+    Layout = "~/Views/Dashboard/Layout/_dashboardLayout.cshtml";
+}
+
+<div class="col-md-12" ng-controller="FirstRunController as frVm">
+    <div class="panel panel-primary" ng-hide="!frVm.viewInitialConfiguration">
+        <div class="panel-heading">
+            <h4>ISEFront Initial Configuration</h4>
+        </div>
+        <div class="panel-body">
+            <div class="content col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5>SAML Identity Provider Configuration</h5>
+                    </div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Name</label>
+                                        <input type="text" class="form-control" ng-model="frVm.identityProviderName" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Description</label>
+                                        <input type="text" class="form-control" ng-model="frVm.identityProviderDescription" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                            <div class="panel panel-default col-md-10 col-md-offset-1">
+                                <div class="panel-heading">
+                                    <h5>Certificate Generation Parameters</h5>
+                                </div>
+
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Subject name</label>
+                                                <input type="text" class="form-control" ng-model="frVm.idPCertificateParameters.subjectName" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Issuer subject name</label>
+                                                <input type="text" class="form-control" ng-model="frVm.idPCertificateParameters.issuerName" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Valid not before</label>
+                                                <div class='input-group date' id='notBeforePicker'>
+                                                    <input type="text"
+                                                            class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Valid not after</label>
+                                                <div class='input-group date' id='notAfterPicker'>
+                                                    <input type="text"
+                                                            class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Password to protect private key</label>
+                                                <div class="input-group">
+                                                    <input type="password" class="form-control" ng-model="frVm.idPCertificateParameters.privateKeyPassword" />
+                                                    <span class="input-group-addon">
+                                                        <button class="btn btn-xs" ng-click="frVm.randomizeCertificatePassword()">Randomize</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Key strength</label>
+                                                <select class="form-control" ng-model="frVm.idPCertificateParameters.keyStrength" convert-to-number>
+                                                    <option value="1024">1024 bits</option>
+                                                    <option value="2048">2048 bits</option>
+                                                    <option value="3072">3072 bits</option>
+                                                    <option value="4096">4096 bits</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Hash algorithm</label>
+                                                <select class="form-control" ng-model="frVm.idPCertificateParameters.hashAlgorithm">
+                                                    <option value="SHA1withDSA">SHA1 with DSA</option>
+                                                    <option value="SHA1withECDSA">SHA1 with ECDSA</option>
+                                                    <option value="SHA224withECDSA">SHA224 with ECDSA</option>
+                                                    <option value="SHA256withECDSA">SHA256 with ECDSA</option>
+                                                    <option value="SHA384withECDSA">SHA384 with ECDSA</option>
+                                                    <option value="SHA512withECDSA">SHA512 with ECDSA</option>
+                                                    <option value="MD2withRSA">MD2 with RSA</option>
+                                                    <option value="MD5withRSA">MD5 with RSA</option>
+                                                    <option value="SHA1withRSA">SHA1 with RSA</option>
+                                                    <option value="SHA512withRSA">SHA512 with RSA</option>
+                                                    <option value="SHA224withRSA">SHA224 with RSA</option>
+                                                    <option value="SHA256withRSA">SHA256 with RSA</option>
+                                                    <option value="SHA384withRSA">SHA384 with RSA</option>
+                                                    <option value="RIPEMD160withRSA">RIPEMD160 with RSA</option>
+                                                    <option value="RIPEMD128withRSA">RIPEMD128 with RSA</option>
+                                                    <option value="RIPEMD256withRSA">RIPEMD256 with RSA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content col-md-10 col-md-offset-1">
+                <div class="row">
+                    <div class="form-group pull-right">
+                        <button class="btn" ng-click="frVm.saveAndContinue()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

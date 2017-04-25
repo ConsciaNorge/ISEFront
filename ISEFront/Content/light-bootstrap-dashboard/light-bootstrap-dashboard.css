@@ -935,10 +935,10 @@ body > .navbar-collapse {
   line-height: 1.5;
   color: #333333; }
 
-.checkbox input,
+/*.checkbox input,
 .radio input {
   outline: none !important;
-  display: none; }
+  display: none; }*/
 
 .checkbox .icons,
 .radio .icons {
@@ -1444,7 +1444,8 @@ body > .navbar-collapse {
     padding: 10px 0px;
     margin: 10px 10px 10px 0px; }
 
-.dropdown-menu {
+/* commented by D.S. since it breaks date time picker*/
+/*.dropdown-menu {
   visibility: hidden;
   margin: 0;
   padding: 0;
@@ -1529,7 +1530,7 @@ body > .navbar-collapse {
     width: 46px; }
   .dropdown-with-icons i[class^="fa"] {
     font-size: 14px;
-    width: 38px; }
+    width: 38px; }*/
 
 .btn-group.select {
   overflow: hidden; }

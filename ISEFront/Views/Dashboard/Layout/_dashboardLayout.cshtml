@@ -15,7 +15,10 @@
     @Styles.Render("~/Content/light-bootstrap-dashboard")
     @Styles.Render("~/Content/animate")
     @Styles.Render("~/Content/fonts")
+    @Styles.Render("~/Content/bootstrap-datetime-picker")
 
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/css/perfect-scrollbar.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
 
 </head>
@@ -27,7 +30,6 @@
 
         <div class="main-panel">
             @RenderPage("_navigation.cshtml")
-
 
             <div class="content">
                 <div class="container-fluid">
@@ -48,15 +50,12 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/angular-ui")
+    @Scripts.Render("~/bundles/angular-file-upload")
     @Scripts.Render("~/bundles/light-bootstrap-dashboard")
+    @Scripts.Render("~/bundles/momentjs")
+    @Scripts.Render("~/bundles/bootstrap-datetime-picker")
+    @Scripts.Render("~/bundles/dashboard")
 
-    <script src="~/js/interfaces/Dashboard/IDashboardScope.js"></script>
-    <script src="~/js/interfaces/Dashboard/IDashboardSidePanelItemStorage.js"></script>
-    <script src="~/js/models/Dashboard/DashboardSidePanelItem.js"></script>
-    <script src="~/js/services/Dashboard/DashboardSidePanelItemStorage.js"></script>
-    <script src="~/js/controllers/dashboard/DashboardController.js"></script>
-    <script src="~/js/controllers/dashboard/SidePanelController.js"></script>
-    <script src="~/js/app/app.js"></script>
 </body>
 
 @*<!--  Checkbox, Radio & Switch Plugins -->
@@ -67,9 +66,6 @@
 
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
-
-<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="assets/js/light-bootstrap-dashboard.js"></script>*@
-
+*@
 
 </html>

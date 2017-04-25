@@ -1,0 +1,64 @@
+﻿<div class="card col-md-offset-1 col-md-10" ng-hide="!spVm.viewCreateServiceProvider">
+    <div class="header">
+        <h4 class="title">Create New Service Provider</h4>
+    </div>
+
+    <div class="content">
+        <form>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Name</label>
+                        <input type="text" class="form-control" ng-model="spVm.newSp.name" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Description</label>
+                        <input type="text" class="form-control" ng-model="spVm.newSp.description" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <a href="/dashboard/idpmetadata">Download SAML IDp Metadata</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Upload SP metadata</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" disabled ng-model="spVm.spMetadataFile.name" />
+                            <span class="input-group-addon">
+                                <button 
+                                        class="btn btn-xs" 
+                                        type="file" 
+                                        ngf-select="spVm.uploadSpMetadata($file, $invalidFiles)"
+                                        accept="text/xml" 
+                                        ngf-max-size="1MB">
+                                    Select File
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group pull-right">
+                        <button class="btn btn-md">Back</button>
+                        <button class="btn btn-md">Next</button>
+                        <button class="btn btn-md">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

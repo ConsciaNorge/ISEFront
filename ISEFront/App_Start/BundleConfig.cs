@@ -50,8 +50,34 @@ namespace ISEFront
                 "~/Content/font-awesome.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/light-bootstrap-dashboard").Include(
+                "~/Scripts/light-bootstrap-dashboard/bootstrap-checkbox-radio-switch.js",
                 "~/Scripts/light-bootstrap-dashboard/light-bootstrap-dashboard.js",
                 "~/Scripts/light-bootstrap-dashboard/bootstrap-notify.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/momentjs").Include(
+                "~/Scripts/moment.min.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/bootstrap-datetime-picker").Include(
+                      "~/Content/bootstrap-datetimepicker.min.css"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-datetime-picker").Include(
+                "~/Scripts/bootstrap-datetimepicker.min.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/dashboard")
+                .IncludeDirectory("~/js/controllers", "*.js", true)
+                .IncludeDirectory("~/js/interfaces", "*.js", true)
+                .IncludeDirectory("~/js/models", "*.js", true)
+                .IncludeDirectory("~/js/services", "*.js", true)
+                .IncludeDirectory("~/js/directives", "*.js", true)
+                .IncludeDirectory("~/js/app", "*.js", true)
+                );
+
+            bundles.Add(new ScriptBundle("~/bundles/angular-file-upload")
+                .Include("~/Scripts/ng-file-upload.min.js")
+                );
         }
     }
 }

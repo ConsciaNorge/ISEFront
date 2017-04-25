@@ -1,0 +1,544 @@
+﻿<div class="card col-md-offset-1 col-md-10" ng-hide="!spVm.viewEditServiceProvider">
+    <div class="header">
+        <h4 class="title">Edit Service Provider</h4>
+        <h5 class="title">Partner - {{spVm.editVm.brief.name}}</h5>
+    </div>
+
+    <div class="content">
+        <form>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Name</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.name" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Description</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.description" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Assertion consumer service URL</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.assertionConsumerServiceUrl" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Single logout service response URL</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.singleLogoutServiceResponseUrl" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Single logout service URL</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.singleLogoutServiceUrl" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.wantAuthnRequestSigned" />
+                            Want authentication request signed?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.signSAMLResponse" />
+                            Sign SAML response?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.signAssertion" />
+                            Sign assertion?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.encryptAssertion" />
+                            Encrypt assertion?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Assertion life time</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.assertionLifeTime" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.disableInboundLogout" />
+                            Disable inbound logout?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.disableOutboundLogout" />
+                            Disable outbound logout?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.disableInResponseToCheck" />
+                            Disable in response to check?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.disablePendingLogoutCheck" />
+                            Disable pending logout check?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.signLogoutRequest" />
+                            Sign logout request?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.signLogoutResponse" />
+                            Sign logout response?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.wantLogoutRequestSigned" />
+                            Want logout request signed?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.wantLogoutResponseSigned" />
+                            Want logout response signed?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.useEmbeddedCertificate" />
+                            Use embedded certificate?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Issuer format</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.issuerFormat" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Name ID format</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.nameIDFormat" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Digest method</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.digestMethod" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Signature method</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.signatureMethod" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Want digest method</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.wantDigestMethod" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Want signature method</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.wantSignatureMethod" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Key encryption method</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.keyEncryptionMethod" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Data encryption method</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.dataEncryptionMethod" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="spVm.editVm.details.disableDestinationCheck" />
+                            Disable destination check?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Logout request life time</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.logoutRequestLifeTime" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Single logout service binding</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.singleLogoutServiceBinding" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Partner certificate file</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.partnerCertificateFile" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Partner certificate serial number</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.partnerCertificateSerialNumber" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Partner certificate thumbprint</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.partnerCertificateThumbprint" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Partner certificate subject</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.partnerCertificateSubject" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Secondary partner certificate file</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.secondaryPartnerCertificateFile" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Secondary partner certificate serial number</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.secondaryPartnerCertificateSerialNumber" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Clock skew</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.clockSkew" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Secondary partner certificate thumbprint</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.secondaryPartnerCertificateThumbprint" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Tertiary partner certificate file</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.tertiaryPartnerCertificateFile" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Tertiary partner certificate serial number</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.tertiaryPartnerCertificateSerialNumber" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Tertiary partner certificate thumbprint</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.tertiaryPartnerCertificateThumbprint" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Tertiary partner certificate subject</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.tertiaryPartnerCertificateSubject" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Secondary partner certificate subject</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.secondaryPartnerCertificateSubject" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Authentication context</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.authnContext" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Tertiary local certificate thumbprint</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.tertiaryLocalCertificateThumbprint" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Tertiary local certificate serial number</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.tertiaryLocalCertificateSerialNumber" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Tertiary local certificate password key</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.tertiaryLocalCertificatePasswordKey" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Tertiary local certificate password</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.tertiaryLocalCertificatePassword" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Tertiary local certificate file</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.tertiaryLocalCertificateFile" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Secondary local certificate subject</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.secondaryLocalCertificateSubject" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Secondary local certificate thumbprint</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.secondaryLocalCertificateThumbprint" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Secondary local certificate serial number</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.secondaryLocalCertificateSerialNumber" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Secondary local certificate password key</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.secondaryLocalCertificatePasswordKey" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Secondary local certificate password</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.secondaryLocalCertificatePassword" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Secondary local certificate file</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.secondaryLocalCertificateFile" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Local certificate subject</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.localCertificateSubject" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Local certificate thumbprint</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.localCertificateThumbprint" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Local certificate serial number</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.localCertificateSerialNumber" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Local certificate password key</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.localCertificatePasswordKey" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Local certificate password</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.localCertificatePassword" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Local certificate file</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.localCertificateFile" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Tertiary local certificate subject</label>
+                        <input type="text" class="form-control" ng-model="spVm.editVm.details.tertiaryLocalCertificateSubject" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

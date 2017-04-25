@@ -1,0 +1,74 @@
+/// <reference path='../../_all.ts' />
+var dashboard;
+(function (dashboard) {
+    'use strict';
+    var ServiceProviderDetailItem = (function () {
+        function ServiceProviderDetailItem(assertionConsumerServiceUrl, wantAuthnRequestSigned, signSAMLResponse, signAssertion, encryptAssertion, assertionLifeTime, disableInboundLogout, disableOutboundLogout, disableInResponseToCheck, disablePendingLogoutCheck, signLogoutRequest, signLogoutResponse, wantLogoutRequestSigned, wantLogoutResponseSigned, useEmbeddedCertificate, issuerFormat, nameIDFormat, digestMethod, signatureMethod, wantDigestMethod, wantSignatureMethod, keyEncryptionMethod, dataEncryptionMethod, disableDestinationCheck, logoutRequestLifeTime, singleLogoutServiceBinding, singleLogoutServiceResponseUrl, partnerCertificateFile, partnerCertificateSerialNumber, partnerCertificateThumbprint, partnerCertificateSubject, secondaryPartnerCertificateFile, secondaryPartnerCertificateSerialNumber, clockSkew, secondaryPartnerCertificateThumbprint, tertiaryPartnerCertificateFile, tertiaryPartnerCertificateSerialNumber, tertiaryPartnerCertificateThumbprint, tertiaryPartnerCertificateSubject, singleLogoutServiceUrl, secondaryPartnerCertificateSubject, authnContext, tertiaryLocalCertificateThumbprint, tertiaryLocalCertificateSerialNumber, tertiaryLocalCertificatePasswordKey, tertiaryLocalCertificatePassword, tertiaryLocalCertificateFile, secondaryLocalCertificateSubject, secondaryLocalCertificateThumbprint, secondaryLocalCertificateSerialNumber, secondaryLocalCertificatePasswordKey, secondaryLocalCertificatePassword, secondaryLocalCertificateFile, localCertificateSubject, localCertificateThumbprint, localCertificateSerialNumber, localCertificatePasswordKey, localCertificatePassword, localCertificateFile, description, name, tertiaryLocalCertificateSubject) {
+            this.assertionConsumerServiceUrl = assertionConsumerServiceUrl;
+            this.wantAuthnRequestSigned = wantAuthnRequestSigned;
+            this.signSAMLResponse = signSAMLResponse;
+            this.signAssertion = signAssertion;
+            this.encryptAssertion = encryptAssertion;
+            this.assertionLifeTime = assertionLifeTime;
+            this.disableInboundLogout = disableInboundLogout;
+            this.disableOutboundLogout = disableOutboundLogout;
+            this.disableInResponseToCheck = disableInResponseToCheck;
+            this.disablePendingLogoutCheck = disablePendingLogoutCheck;
+            this.signLogoutRequest = signLogoutRequest;
+            this.signLogoutResponse = signLogoutResponse;
+            this.wantLogoutRequestSigned = wantLogoutRequestSigned;
+            this.wantLogoutResponseSigned = wantLogoutResponseSigned;
+            this.useEmbeddedCertificate = useEmbeddedCertificate;
+            this.issuerFormat = issuerFormat;
+            this.nameIDFormat = nameIDFormat;
+            this.digestMethod = digestMethod;
+            this.signatureMethod = signatureMethod;
+            this.wantDigestMethod = wantDigestMethod;
+            this.wantSignatureMethod = wantSignatureMethod;
+            this.keyEncryptionMethod = keyEncryptionMethod;
+            this.dataEncryptionMethod = dataEncryptionMethod;
+            this.disableDestinationCheck = disableDestinationCheck;
+            this.logoutRequestLifeTime = logoutRequestLifeTime;
+            this.singleLogoutServiceBinding = singleLogoutServiceBinding;
+            this.singleLogoutServiceResponseUrl = singleLogoutServiceResponseUrl;
+            this.partnerCertificateFile = partnerCertificateFile;
+            this.partnerCertificateSerialNumber = partnerCertificateSerialNumber;
+            this.partnerCertificateThumbprint = partnerCertificateThumbprint;
+            this.partnerCertificateSubject = partnerCertificateSubject;
+            this.secondaryPartnerCertificateFile = secondaryPartnerCertificateFile;
+            this.secondaryPartnerCertificateSerialNumber = secondaryPartnerCertificateSerialNumber;
+            this.clockSkew = clockSkew;
+            this.secondaryPartnerCertificateThumbprint = secondaryPartnerCertificateThumbprint;
+            this.tertiaryPartnerCertificateFile = tertiaryPartnerCertificateFile;
+            this.tertiaryPartnerCertificateSerialNumber = tertiaryPartnerCertificateSerialNumber;
+            this.tertiaryPartnerCertificateThumbprint = tertiaryPartnerCertificateThumbprint;
+            this.tertiaryPartnerCertificateSubject = tertiaryPartnerCertificateSubject;
+            this.singleLogoutServiceUrl = singleLogoutServiceUrl;
+            this.secondaryPartnerCertificateSubject = secondaryPartnerCertificateSubject;
+            this.authnContext = authnContext;
+            this.tertiaryLocalCertificateThumbprint = tertiaryLocalCertificateThumbprint;
+            this.tertiaryLocalCertificateSerialNumber = tertiaryLocalCertificateSerialNumber;
+            this.tertiaryLocalCertificatePasswordKey = tertiaryLocalCertificatePasswordKey;
+            this.tertiaryLocalCertificatePassword = tertiaryLocalCertificatePassword;
+            this.tertiaryLocalCertificateFile = tertiaryLocalCertificateFile;
+            this.secondaryLocalCertificateSubject = secondaryLocalCertificateSubject;
+            this.secondaryLocalCertificateThumbprint = secondaryLocalCertificateThumbprint;
+            this.secondaryLocalCertificateSerialNumber = secondaryLocalCertificateSerialNumber;
+            this.secondaryLocalCertificatePasswordKey = secondaryLocalCertificatePasswordKey;
+            this.secondaryLocalCertificatePassword = secondaryLocalCertificatePassword;
+            this.secondaryLocalCertificateFile = secondaryLocalCertificateFile;
+            this.localCertificateSubject = localCertificateSubject;
+            this.localCertificateThumbprint = localCertificateThumbprint;
+            this.localCertificateSerialNumber = localCertificateSerialNumber;
+            this.localCertificatePasswordKey = localCertificatePasswordKey;
+            this.localCertificatePassword = localCertificatePassword;
+            this.localCertificateFile = localCertificateFile;
+            this.description = description;
+            this.name = name;
+            this.tertiaryLocalCertificateSubject = tertiaryLocalCertificateSubject;
+        }
+        return ServiceProviderDetailItem;
+    }());
+    dashboard.ServiceProviderDetailItem = ServiceProviderDetailItem;
+})(dashboard || (dashboard = {}));
+//# sourceMappingURL=ServiceProviderDetailItem.js.map

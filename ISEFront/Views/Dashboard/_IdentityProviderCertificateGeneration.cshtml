@@ -1,0 +1,109 @@
+﻿<div class="panel panel-default col-md-8 col-md-offset-2" ng-hide="!idpVm.viewCertificateGeneratorPane">
+    <div class="header">
+        <h5 class="title">Generate new certificate</h5>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">Subject name</label>
+                    <input type="text" class="form-control" ng-model="idpVm.certificateGeneration.subjectName" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">Issuer subject name</label>
+                    <input type="text" class="form-control" ng-model="idpVm.certificateGeneration.issuerName" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Valid not before</label>
+                    <div class='input-group date' id='notBeforePicker'>
+                        <input type="text"
+                               class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Valid not after</label>
+                    <div class='input-group date' id='notAfterPicker'>
+                        <input type="text"
+                               class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">Password to protect private key</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" ng-model="idpVm.certificateGeneration.privateKeyPassword" />
+                        <span class="input-group-addon">
+                            <button class="btn btn-xs" ng-click="idpVm.randomizeCertificatePassword()">Randomize</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Key strength</label>
+                    <select class="form-control" ng-model="idpVm.certificateGeneration.keyStrength" convert-to-number>
+                        <option value="1024">1024 bits</option>
+                        <option value="2048">2048 bits</option>
+                        <option value="3072">3072 bits</option>
+                        <option value="4096">4096 bits</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Hash algorithm</label>
+                    <select class="form-control" ng-model="idpVm.certificateGeneration.hashAlgorithm">
+                        <option value="SHA1withDSA">SHA1 with DSA</option>
+                        <option value="SHA1withECDSA">SHA1 with ECDSA</option>
+                        <option value="SHA224withECDSA">SHA224 with ECDSA</option>
+                        <option value="SHA256withECDSA">SHA256 with ECDSA</option>
+                        <option value="SHA384withECDSA">SHA384 with ECDSA</option>
+                        <option value="SHA512withECDSA">SHA512 with ECDSA</option>
+                        <option value="MD2withRSA">MD2 with RSA</option>
+                        <option value="MD5withRSA">MD5 with RSA</option>
+                        <option value="SHA1withRSA">SHA1 with RSA</option>
+                        <option value="SHA512withRSA">SHA512 with RSA</option>
+                        <option value="SHA224withRSA">SHA224 with RSA</option>
+                        <option value="SHA256withRSA">SHA256 with RSA</option>
+                        <option value="SHA384withRSA">SHA384 with RSA</option>
+                        <option value="RIPEMD160withRSA">RIPEMD160 with RSA</option>
+                        <option value="RIPEMD128withRSA">RIPEMD128 with RSA</option>
+                        <option value="RIPEMD256withRSA">RIPEMD256 with RSA</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group pull-right">
+                    <button class="btn btn-md" ng-click="idpVm.generateCertificateClicked()">Generate</button>
+                    <button class="btn btn-md" ng-click="idpVm.cancelGenerateCertificate()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

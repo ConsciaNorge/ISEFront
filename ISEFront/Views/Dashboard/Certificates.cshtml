@@ -4,6 +4,61 @@
     Layout = "~/Views/Dashboard/Layout/_dashboardLayout.cshtml";
 }
 
-<article ng-controller="DashboardController as vm">
-    Certificate view
-</article>
+<div class="col-md-12" ng-controller="CertificatesController as certificatesVm">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Certificates</h4>
+        </div>
+
+        <div class="content">
+            @*<form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Partner</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <input type="text" class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="checkbox">
+                                <input type="checkbox"  />
+                                Want authentication signed request?
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>*@
+
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Subject name</th>
+                        <th>Issuer</th>
+                        <th>Issuer name</th>
+                        <th>Private key?</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>https://www.news.com</td>
+                        <td>GoDaddy</td>
+                        <td>https://www.godaddy.com</td>
+                        <td>No</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
