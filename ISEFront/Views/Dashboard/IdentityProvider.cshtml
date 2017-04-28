@@ -30,7 +30,6 @@
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-
                             <div class="panel panel-default" ng-hide="!idpVm.viewInstalledCertificate">
                                 <div class="panel-heading">
                                     Certificates
@@ -44,105 +43,7 @@
                                         </div>
                                     </div>
                                     <div class="row col-md-10 col-md-offset-1" ng-repeat="certificate in idpVm.idpDetails.certificates">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                Certificate {{certificate.subjectName}}
-                                            </div>
-                                            <div class="panel-body">
-                                                <div class="row">
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Version</label>
-                                                            <input type="text" disabled class="form-control" ng-model="certificate.version " />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Serial number</label>
-                                                            <input type="text" disabled class="form-control" ng-model="certificate.serialNumber" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Signature algorithm ID</label>
-                                                            <input type="text" disabled class="form-control" ng-model="certificate.signatureAlgorithmId" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Subject name</label>
-                                                            <input type="text" disabled class="form-control" ng-model="certificate.subjectName" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Issuer</label>
-                                                            <input type="text" disabled class="form-control" ng-model="certificate.issuer" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Issuer name</label>
-                                                            <input type="text" disabled class="form-control" ng-model="certificate.issuerName" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Valid not before</label>
-                                                            <input type="text" disabled class="form-control" ng-model="certificate.notBefore" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Valid not after</label>
-                                                            <input type="text" disabled class="form-control" ng-model="certificate.notAfter" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-10 col-md-offset-1">
-                                                        <div class="panel panel-default">
-                                                            <div class="panel-heading">
-                                                                Public key
-                                                            </div>
-                                                            <div class="panel-body">
-                                                                <div class="row">
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label">Algorithm</label>
-                                                                            <input type="text" disabled class="form-control" ng-model="certificate.publicKeyAlgorithm" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label">Subject public key</label>
-                                                                            <textarea disabled class="form-control" rows="10">{{certificate.subjectPublicKey}}</textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div classs="row">
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <a href="~/Dashboard/idppubliccertificate/{{certificate.serialNumber}}">Download certificate</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @RenderPage("_certificateView.cshtml")
                                     </div>
                                 </div>
                             </div>

@@ -372,6 +372,7 @@
     <Compile Include="Utility\CheckConfigurationAttribute.cs" />
     <Compile Include="Utility\DashboardAttribute.cs" />
     <Compile Include="Utility\IdpMetadata.cs" />
+    <Compile Include="Utility\Security\CertificateTools.cs" />
     <Compile Include="Utility\Security\SelfSignedCertificate.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -433,7 +434,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="js\controllers\dashboard\serviceproviders\EditServiceProviderDialog.html" />
     <Content Include="js\directives\datetimepickerDirective.js" />
     <Content Include="js\directives\nonStringSelect.js" />
     <Content Include="Scripts\angular-bootstrap-switch.js" />
@@ -601,7 +601,6 @@
     <Content Include="Views\Dashboard\Layout\_navigation.cshtml" />
     <Content Include="Views\Dashboard\Layout\_footer.cshtml" />
     <Content Include="Views\Dashboard\Layout\_sidePanel.cshtml" />
-    <Content Include="Views\Dashboard\Certificates.cshtml" />
     <Content Include="Views\Dashboard\ServiceProviders.cshtml" />
     <Content Include="Views\Dashboard\IdentityProvider.cshtml" />
     <Content Include="Views\Dashboard\_IdentityProviderCertificateGeneration.cshtml" />
@@ -621,6 +620,7 @@
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Dashboard\CiscoISE.cshtml" />
+    <Content Include="Views\Dashboard\_certificateView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -637,7 +637,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="js\app\app.ts" />
-    <TypeScriptCompile Include="js\controllers\dashboard\CertificatesController.ts" />
     <TypeScriptCompile Include="js\controllers\dashboard\DashboardController.ts" />
     <TypeScriptCompile Include="js\controllers\dashboard\firstrun\FirstRunController.ts" />
     <TypeScriptCompile Include="js\controllers\dashboard\identityprovider\IdentityProviderController.ts" />

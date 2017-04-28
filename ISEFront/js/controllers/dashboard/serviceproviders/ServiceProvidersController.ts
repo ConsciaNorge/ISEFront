@@ -28,7 +28,6 @@ module dashboard {
         public static $inject = [
             '$scope',
             '$location',
-            //"$uibModal",
             'Upload',
             'ServiceProvidersBriefItemStorage',
             'ServiceProvidersStorage'
@@ -37,7 +36,6 @@ module dashboard {
         constructor(
             private $scope: IDashboardScope,
             private $location: ng.ILocationService,
-            //private $uibModal: angular.ui.bootstrap.IModalService,
             private Upload: angular.angularFileUpload.IUploadService,
             private serviceProvidersBriefItemStorage: ServiceProvidersBriefItemStorage,
             private serviceProvidersStorage: ServiceProvidersStorage
@@ -103,46 +101,9 @@ module dashboard {
                     alert('Uploaded successfully ' + file.name);
                 }).error(function (err) {
                     alert('Error occured during upload');
-                });
-               
-                    //file.upload = Upload.upload({
-                    //    url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-                    //    data: { file: file }
-                    //});
-
-                    //file.upload.then(function (response) {
-                    //    $timeout(function () {
-                    //        file.result = response.data;
-                    //    });
-                    //}, function (response) {
-                    //    if (response.status > 0)
-                    //        $scope.errorMsg = response.status + ': ' + response.data;
-                    //}, function (evt) {
-                    //    file.progress = Math.min(100, parseInt(100.0 *
-                    //        evt.loaded / evt.total));
-                    //});
-                    ;
+                });               
             }   
         }
-
-        //public ShowModal(name:string):void {
-        //    //let modalParams: IEditServiceProviderModalParams = {
-            //    name: name,
-            //    onOk: function() {},
-            //    onCancel: function() {}
-            //};
-
-            //let modalInstance = this.$uibModal.open({
-            //    animation: true,
-            //    templateUrl: "/js/controllers/dashboard/serviceproviders/EditServiceProviderDialog.html",
-            //    controller: EditServiceProviderDialogController,
-            //    controllerAs: "dialogController",
-            //    size: null, // default size
-            //    resolve: {
-            //        modalParams: () => modalParams
-            //    }
-            //});
-
     }
 
 }

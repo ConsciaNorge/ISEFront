@@ -3,6 +3,8 @@ using CiscoISE;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ISEFront.Controllers
 {
@@ -23,12 +25,6 @@ namespace ISEFront.Controllers
             return View();
         }
 
-        [Dashboard(Title = "Certificates")]
-        public ActionResult Certificates()
-        {
-            return View();
-        }
-
         [Dashboard(Title = "Service Providers")]
         public ActionResult ServiceProviders()
         {
@@ -41,7 +37,7 @@ namespace ISEFront.Controllers
             return View();
         }
 
-        [Dashboard(Title = "First Run")]
+        //[Dashboard(Title = "First Run")]
         public ActionResult FirstRun()
         {
             return View();
@@ -60,41 +56,38 @@ namespace ISEFront.Controllers
             return File(metadata, "application/xml", "idpmetadata.xml");
         }
 
-        [Route("~/dashboard/idppubliccertificate/{serialNumber}")]
-        public FileResult IdpPublicCertificate(string serialNumber)
+        public FileResult IdpRootCertificate()
         {
             var x = ComponentSpace.SAML2.SAMLController.Configuration.LocalIdentityProviderConfiguration;
 
             var certFilename = HttpContext.Server.MapPath("~\\" + x.LocalCertificateFile);
-            var certificateCollection = new System.Security.Cryptography.X509Certificates.X509Certificate2Collection();
+            var certificateCollection = new X509Certificate2Collection();
             certificateCollection.Import(
                 certFilename, 
                 x.LocalCertificatePassword, 
-                System.Security.Cryptography.X509Certificates.X509KeyStorageFlags.DefaultKeySet);
+                X509KeyStorageFlags.DefaultKeySet);
 
-            foreach(var certificate in certificateCollection)
+            var sortedCertificates = new List<X509Certificate2>();
+            foreach(var current in certificateCollection)
             {
-                if(certificate.SerialNumber.ToLower() == serialNumber.ToLower())
+                var before = sortedCertificates.Find(n => n.IssuerName.Name == current.SubjectName.Name);
+                if (before == null)
+                    sortedCertificates.Add(current);
+                else
                 {
-                    var bytes = certificate.Export(System.Security.Cryptography.X509Certificates.X509ContentType.Cert);
-                    return File(bytes, "application/pkix-cert", serialNumber + ".cer");
+                    int insertIndex = sortedCertificates.IndexOf(before);
+                    sortedCertificates.Insert(insertIndex, current);
                 }
             }
-            return null;
+
+            var rootCertificate = sortedCertificates.First();
+            var bytes = rootCertificate.Export(X509ContentType.Cert);
+            return File(bytes, "application/pkix-cert", rootCertificate.SerialNumber + ".cer");
         }
 
         [Dashboard(Title = "Cisco ISE")]
-        public async System.Threading.Tasks.Task<ActionResult> CiscoISE()
+        public ActionResult CiscoISE()
         {
-//            var connection = new ISEConnection(new Uri("https://hvciscoise.munchkinlan.com:9060"), "developer", "Minions12345");
-            var connection = new ISEConnection(new Uri("https://hvciscoise.munchkinlan.com:9060"), "sponsoruser", "Minions12345");
-            var users = await GuestUsers.Get(connection);
-            var user = await GuestUsers.Get(connection, users[0]);
-            if(user.Status == "SUSPENDED")
-                await GuestUsers.Reinstate(connection, user);
-            else
-                await GuestUsers.Suspend(connection, user, "Dog ate my homework");
-//            var user = await GuestUsers.GetByName(connection, "bminion");
             return View();
         }
     }

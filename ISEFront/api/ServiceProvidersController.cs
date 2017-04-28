@@ -201,7 +201,7 @@ namespace ISEFront.api.ViewModels
                 }
             });
 
-            return "ok";
+            return result;
         }
 
         private static string CreateCertificateFileName(X509Certificate2 x509Certificate)
