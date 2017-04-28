@@ -1,4 +1,5 @@
 ﻿using ISEFront.Utility;
+using CiscoISE;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -10,6 +11,9 @@ namespace ISEFront.Controllers
     {
         public DashboardController()
         {
+            var clientHandler = new System.Net.Http.HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+
         }
 
         // GET: Configuration
@@ -77,6 +81,21 @@ namespace ISEFront.Controllers
                 }
             }
             return null;
+        }
+
+        [Dashboard(Title = "Cisco ISE")]
+        public async System.Threading.Tasks.Task<ActionResult> CiscoISE()
+        {
+//            var connection = new ISEConnection(new Uri("https://hvciscoise.munchkinlan.com:9060"), "developer", "Minions12345");
+            var connection = new ISEConnection(new Uri("https://hvciscoise.munchkinlan.com:9060"), "sponsoruser", "Minions12345");
+            var users = await GuestUsers.Get(connection);
+            var user = await GuestUsers.Get(connection, users[0]);
+            if(user.Status == "SUSPENDED")
+                await GuestUsers.Reinstate(connection, user);
+            else
+                await GuestUsers.Suspend(connection, user, "Dog ate my homework");
+//            var user = await GuestUsers.GetByName(connection, "bminion");
+            return View();
         }
     }
 }

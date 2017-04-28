@@ -58,7 +58,7 @@ namespace ISEFront.Controllers
                 }
             }
 
-            ComponentSpace.SAML2.SAMLController.TraceLevel = System.Diagnostics.TraceLevel.Verbose;
+            //ComponentSpace.SAML2.SAMLController.TraceLevel = System.Diagnostics.TraceLevel.Verbose;
             SAMLIdentityProvider.SendSSO(Response, userName, attributes);
 
             return new EmptyResult();

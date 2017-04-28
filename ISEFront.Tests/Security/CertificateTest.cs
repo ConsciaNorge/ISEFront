@@ -6,9 +6,9 @@ namespace ISEFront.Tests.Security
     [TestClass]
     public class CertificateTest
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
+        //[TestMethod]
+        //public void TestMethod1()
+        //{
             //Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair caKeyPair = null;
             //System.Security.Cryptography.X509Certificates.X509Certificate2 caRootCertificate =
             //    Utility.Security.SelfSignedCertificate.GenerateSelfSignedCertificate(
@@ -39,6 +39,6 @@ namespace ISEFront.Tests.Security
             //System.Security.Cryptography.RSACryptoServiceProvider csp = (System.Security.Cryptography.RSACryptoServiceProvider)cert.PrivateKey;
             //string id = System.Security.Cryptography.CryptoConfig.MapNameToOID("SHA256");
             //csp.SignData(System.IO.File.ReadAllBytes(@"c:\temp\ugh.xml"), id);
-        }
+//        }
     }
 }
