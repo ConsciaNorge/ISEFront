@@ -1,4 +1,3 @@
-/// <reference path='../../../_all.ts' />
 var dashboard;
 (function (dashboard) {
     'use strict';

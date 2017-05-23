@@ -517,4 +517,5 @@
         angularMoment(angular, (typeof global !== 'undefined' ? global : window).moment);
     }
 })();
+//# sourceMappingURL=angular-moment.js.map 
 //# sourceMappingURL=angular-moment.js.map

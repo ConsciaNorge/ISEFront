@@ -1,13 +1,12 @@
 ﻿using ISEFront.api.ViewModels;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Web.Http;
+using ISEFront.Utility.Application.Dashboard;
 
 namespace ISEFront.api
 {
@@ -33,7 +32,7 @@ namespace ISEFront.api
                         .Where(a => a.GetType().Name == "DashboardAttribute")
                         .Select(a => new
                         {
-                            Attribute = a as Utility.DashboardAttribute
+                            Attribute = a as DashboardAttribute
                         })
                         .FirstOrDefault()
                 })

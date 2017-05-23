@@ -34,7 +34,8 @@ namespace ISEFront.api
         {
             var x = ComponentSpace.SAML2.SAMLController.Configuration.LocalIdentityProviderConfiguration;
 
-            var certFilename = HttpContext.Current.Server.MapPath("~\\" + x.LocalCertificateFile);
+            // TODO : Map path better?
+            var certFilename = HttpContext.Current.Server.MapPath("~/" + x.LocalCertificateFile);
             var certificateCollection = new X509Certificate2Collection();
             certificateCollection.Import(certFilename, x.LocalCertificatePassword, X509KeyStorageFlags.DefaultKeySet);
 
@@ -84,14 +85,15 @@ namespace ISEFront.api
                     details.HashAlgorithm
                 );
 
-            var certificatePathString = HttpContext.Current.Server.MapPath("~/Certificates");
+            var certificatePathString = HttpContext.Current.Server.MapPath("~/app_data/Certificates");
             var certificateFileName = Guid.NewGuid().ToString() + ".pfx";
             var certificateFilePath = Path.Combine(certificatePathString, certificateFileName);
 
             SelfSignedCertificate.Save(certificateFilePath, certificateData);
 
             ComponentSpace.SAML2.SAMLController.Configuration.LocalIdentityProviderConfiguration.LocalCertificatePassword = details.PrivateKeyPassword;
-            ComponentSpace.SAML2.SAMLController.Configuration.LocalIdentityProviderConfiguration.LocalCertificateFile = Path.Combine("Certificates", certificateFileName);
+            // TODO : Consider a cleaner method of combining paths here.
+            ComponentSpace.SAML2.SAMLController.Configuration.LocalIdentityProviderConfiguration.LocalCertificateFile = Path.Combine("app_data", Path.Combine("Certificates", certificateFileName));
 
             var result = CertificateToViewModel(ComponentSpace.SAML2.SAMLController.CertificateManager.GetLocalIdentityProviderSignatureCertificates("default", null).FirstOrDefault());
 
@@ -117,7 +119,7 @@ namespace ISEFront.api
                     idpConfig.IdpCertificateParameters.HashAlgorithm
                 );
 
-            var certificatePathString = HttpContext.Current.Server.MapPath("~/Certificates");
+            var certificatePathString = HttpContext.Current.Server.MapPath("~/app_data/Certificates");
             var certificateFileName = Guid.NewGuid().ToString() + ".pfx";
             var certificateFilePath = Path.Combine(certificatePathString, certificateFileName);
 
@@ -129,7 +131,8 @@ namespace ISEFront.api
             localIdp.Name = idpConfig.IdpName;
             localIdp.Description = idpConfig.IdpDescription;
             localIdp.LocalCertificatePassword = idpConfig.IdpCertificateParameters.PrivateKeyPassword;
-            localIdp.LocalCertificateFile = Path.Combine("Certificates", certificateFileName);
+            // TODO : Consider a cleaner method of combining paths here.
+            localIdp.LocalCertificateFile = Path.Combine("app_data", Path.Combine("Certificates", certificateFileName));
             newConfiguration.LocalIdentityProviderConfiguration = localIdp;
 
             ComponentSpace.SAML2.SAMLController.Configurations.Add("default", newConfiguration);

@@ -1,10 +1,12 @@
-﻿using ISEFront.Utility;
-using CiscoISE;
-using System;
+﻿using System;
 using System.Linq;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using ISEFront.Utility.Configuration;
+using ISEFront.Utility.Application.Dashboard;
+using ISEFront.Utility.SAML;
+using System.Net.Http;
 
 namespace ISEFront.Controllers
 {
@@ -13,9 +15,8 @@ namespace ISEFront.Controllers
     {
         public DashboardController()
         {
-            var clientHandler = new System.Net.Http.HttpClientHandler();
-            clientHandler.ServerCertificateCustomValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
-
+            //var clientHandler = new HttpClientHandler();
+            //clientHandler.ServerCertificateCustomValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
         }
 
         // GET: Configuration
@@ -44,7 +45,7 @@ namespace ISEFront.Controllers
         }
 
         [HttpGet]
-        public FileResult idpmetadata()
+        public FileResult IDPMetadata()
         {
             var idpCertificate = ComponentSpace.SAML2.SAMLController.CertificateManager.GetLocalIdentityProviderSignatureCertificates("default", null).FirstOrDefault();
             if (idpCertificate == null)
@@ -60,7 +61,8 @@ namespace ISEFront.Controllers
         {
             var x = ComponentSpace.SAML2.SAMLController.Configuration.LocalIdentityProviderConfiguration;
 
-            var certFilename = HttpContext.Server.MapPath("~\\" + x.LocalCertificateFile);
+            // TODO : Path combine?
+            var certFilename = HttpContext.Server.MapPath("~/" + x.LocalCertificateFile);
             var certificateCollection = new X509Certificate2Collection();
             certificateCollection.Import(
                 certFilename, 
@@ -85,8 +87,37 @@ namespace ISEFront.Controllers
             return File(bytes, "application/pkix-cert", rootCertificate.SerialNumber + ".cer");
         }
 
+        [Route("~/dashboard/idppubliccertificate/{serialNumber}")]
+        public FileResult IdpPublicCertificate(string serialNumber)
+        {
+            var x = ComponentSpace.SAML2.SAMLController.Configuration.LocalIdentityProviderConfiguration;
+
+            var certFilename = HttpContext.Server.MapPath("~/" + x.LocalCertificateFile);
+            var certificateCollection = new X509Certificate2Collection();
+            certificateCollection.Import(
+                certFilename,
+                x.LocalCertificatePassword,
+                X509KeyStorageFlags.DefaultKeySet);
+
+            foreach (var certificate in certificateCollection)
+            {
+                if (certificate.SerialNumber.ToLower() == serialNumber.ToLower())
+                {
+                    var bytes = certificate.Export(X509ContentType.Cert);
+                    return File(bytes, "application/pkix-cert", serialNumber + ".cer");
+                }
+            }
+            return null;
+        }
+
         [Dashboard(Title = "Cisco ISE")]
         public ActionResult CiscoISE()
+        {
+            return View();
+        }
+
+        [Dashboard(Title = "BankID")]
+        public ActionResult BankID()
         {
             return View();
         }

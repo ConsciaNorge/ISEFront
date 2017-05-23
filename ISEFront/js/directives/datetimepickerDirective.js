@@ -1,6 +1,5 @@
-﻿(function () {
+(function () {
     var dateTimePicker = function ($rootScope) {
-
         return {
             require: '?ngModel',
             restrict: 'AE',
@@ -15,16 +14,12 @@
                     pick12HourFormat: scope.pick12HourFormat,
                     language: scope.language,
                     useCurrent: scope.useCurrent
-                })
-
+                });
                 //Local event change
                 elem.on('blur', function () {
-
                     console.info('this', this);
                     console.info('scope', scope);
                     console.info('attrs', attrs);
-
-
                     /*// returns moments.js format object
                     scope.dateTime = new Date(elem.data("DateTimePicker").getDate().format());
                     // Global change propagation
@@ -35,12 +30,12 @@
                         example: scope.useCurrent
                     });
                     scope.$apply();*/
-                })
+                });
             }
         };
-    }
-
+    };
     angular.module('dateTimeSandbox', [])
         .run(['$rootScope', function ($rootScope) { }])
         .directive('dateTimePicker', dateTimePicker);
 })();
+//# sourceMappingURL=datetimepickerDirective.js.map

@@ -365,4 +365,5 @@
         }
     };
 }));
+//# sourceMappingURL=bootstrap-notify.js.map 
 //# sourceMappingURL=bootstrap-notify.js.map

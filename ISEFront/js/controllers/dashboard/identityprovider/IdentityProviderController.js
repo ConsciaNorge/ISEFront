@@ -1,4 +1,3 @@
-/// <reference path='../../../_all.ts' />
 // Using date time picker from typescript : http://www.byteblocks.com/Post/Use-Datetime-Picker-With-Typescript
 // Date time picker angular directive : https://gist.github.com/eugenekgn/f00c4d764430642dca4b
 var dashboard;

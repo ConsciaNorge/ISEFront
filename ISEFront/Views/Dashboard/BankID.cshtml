@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "BankID Configuration";
+    Layout = "~/Views/Dashboard/Layout/_dashboardLayout.cshtml";
+}
+
+<div class="col-md-12" ng-controller="BankIDController as bidVm">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            BankID Settings
+        </div>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Client ID</label>
+                        <input type="text" class="form-control" ng-model="bidVm.settings.clientId" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Client Secret</label>
+                        <input type="text" class="form-control" ng-model="bidVm.settings.clientSecret" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">OIDC Base URL</label>
+                        <input type="text" class="form-control" ng-model="bidVm.settings.oidcBaseUrl" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Redirect URL</label>
+                        <input type="text" class="form-control" ng-model="bidVm.settings.redirectUrl" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Manifest URL</label>
+                        <input type="text" class="form-control" ng-model="bidVm.settings.manifestUrl" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Authentication type</label>
+                        <input type="text" class="form-control" ng-model="bidVm.settings.authenticationType" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Scope</label>
+                        <input type="text" class="form-control" ng-model="bidVm.settings.scope" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="pull-left">
+                            <button ng-click="bidVm.save()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -339,4 +339,5 @@
             $.error('Method ' + method + ' does not exist!');
     };
 }(jQuery);
+//# sourceMappingURL=bootstrap-checkbox-radio-switch.js.map 
 //# sourceMappingURL=bootstrap-checkbox-radio-switch.js.map

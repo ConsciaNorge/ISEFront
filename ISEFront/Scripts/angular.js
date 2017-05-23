@@ -4372,8 +4372,10 @@
         var runBlocks = loadModules(modulesToLoad);
         instanceInjector = protoInstanceInjector.get('$injector');
         instanceInjector.strictDi = strictDi;
-        forEach(runBlocks, function (fn) { if (fn)
-            instanceInjector.invoke(fn); });
+        forEach(runBlocks, function (fn) {
+            if (fn)
+                instanceInjector.invoke(fn);
+        });
         return instanceInjector;
         ////////////////////////////////////
         // $provider
@@ -30854,9 +30856,14 @@
                 },
                 "id": "en-us",
                 "localeID": "en_US",
-                "pluralCat": function (n, opt_precision) { var i = n | 0; var vf = getVF(n, opt_precision); if (i == 1 && vf.v == 0) {
-                    return PLURAL_CATEGORY.ONE;
-                } return PLURAL_CATEGORY.OTHER; }
+                "pluralCat": function (n, opt_precision) {
+                    var i = n | 0;
+                    var vf = getVF(n, opt_precision);
+                    if (i == 1 && vf.v == 0) {
+                        return PLURAL_CATEGORY.ONE;
+                    }
+                    return PLURAL_CATEGORY.OTHER;
+                }
             });
         }]);
     jqLite(function () {
@@ -30864,4 +30871,5 @@
     });
 })(window);
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
+//# sourceMappingURL=angular.js.map 
 //# sourceMappingURL=angular.js.map

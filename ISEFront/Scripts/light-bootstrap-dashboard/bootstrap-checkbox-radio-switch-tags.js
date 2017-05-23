@@ -638,4 +638,5 @@
         }
     };
 })(jQuery);
+//# sourceMappingURL=bootstrap-checkbox-radio-switch-tags.js.map 
 //# sourceMappingURL=bootstrap-checkbox-radio-switch-tags.js.map

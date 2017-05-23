@@ -6194,4 +6194,5 @@
     }
     return jQuery;
 });
+//# sourceMappingURL=jquery-3.1.1.slim.js.map 
 //# sourceMappingURL=jquery-3.1.1.slim.js.map

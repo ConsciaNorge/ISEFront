@@ -1,17 +1,5 @@
-﻿/// <reference path='../../../_all.ts' />
-
-module dashboard {
+﻿namespace dashboard {
     'use strict';
-
-    export interface IEditServiceProviderModalParams {
-        name: string;
-        onOk(): void;
-        onCancel(): void;
-    }
-
-    export interface IModalService {
-        showConfirmDialog(title: string, bodyText: string, onOk: () => void, onCancel?: () => void): void;
-    }
 
     export class ServiceProvidersController {
 
@@ -94,14 +82,20 @@ module dashboard {
                 this.Upload.upload({
                     url: '/api/serviceprovider/spmetadataupload',
                     method: 'POST',
-                    file: file
-                }).progress(function (evt) {
-                    //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-                }).success(function (data, status, headers, config) {
-                    alert('Uploaded successfully ' + file.name);
-                }).error(function (err) {
-                    alert('Error occured during upload');
-                });               
+                    data: {
+                        media: [file]
+                    }
+                }).abort().xhr((evt: any) => {
+                    console.log("xhr");
+                }).progress((evt: angular.angularFileUpload.IFileProgressEvent) => {
+                    let percent = parseInt((100.0 * evt.loaded / evt.total).toString(), 10);
+                    console.log("upload progress: " + percent + "% for " + evt.config.data.media[0]);
+                }).catch((response: ng.IHttpPromiseCallbackArg<any>) => {
+                    console.error(response.data, response.status, response.statusText, response.headers);
+                }).then((response: ng.IHttpPromiseCallbackArg<any>) => {
+                    // file is uploaded successfully
+                    console.log("Success!", response.data, response.status, response.headers, response.config);
+                });              
             }   
         }
     }

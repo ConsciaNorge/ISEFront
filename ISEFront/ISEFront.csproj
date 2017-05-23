@@ -27,7 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
-    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,6 +37,19 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>ES6</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,6 +76,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -128,11 +144,23 @@
     <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.1.1.1\lib\netstandard1.1\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.FileExtensions.1.1.1\lib\net451\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Json, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Json.1.1.1\lib\net451\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Physical.1.1.0\lib\net451\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileSystemGlobbing.1.1.0\lib\net45\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Logging, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.1.1.1\lib\netstandard1.1\Microsoft.Extensions.Logging.dll</HintPath>
@@ -155,6 +183,9 @@
     <Reference Include="Microsoft.Extensions.WebEncoders, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.WebEncoders.1.1.1\lib\netstandard1.0\Microsoft.Extensions.WebEncoders.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocol.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.0\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Net.Http.Headers, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.Headers.1.1.1\lib\netstandard1.1\Microsoft.Net.Http.Headers.dll</HintPath>
     </Reference>
@@ -175,6 +206,12 @@
     </Reference>
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OpenIdConnect, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OpenIdConnect.3.1.0\lib\net45\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Administration, Version=10.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Administration.10.0.0\lib\netstandard1.3\Microsoft.Web.Administration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
@@ -210,12 +247,19 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.Diagnostics.TraceSource, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.TraceSource.4.0.0\lib\net46\System.Diagnostics.TraceSource.dll</HintPath>
+    </Reference>
     <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
@@ -258,6 +302,7 @@
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
@@ -339,17 +384,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\BankIDController.cs" />
+    <Compile Include="api\CiscoISEController.cs" />
     <Compile Include="api\DashboardController.cs" />
     <Compile Include="api\CertificatesController.cs" />
     <Compile Include="api\FileUploadResult.cs" />
     <Compile Include="api\IdentityProviderController.cs" />
     <Compile Include="api\ValidateMimeMultipartContentFilter.cs" />
+    <Compile Include="api\ViewModels\BankIDSettingsViewModel.cs" />
     <Compile Include="api\ViewModels\CertificateGenerationDetailsViewModel.cs" />
     <Compile Include="api\ViewModels\CertificateViewModel.cs" />
     <Compile Include="api\ViewModels\IdentityProviderConfigurationViewModel.cs" />
     <Compile Include="api\ViewModels\IdentityProviderViewModel.cs" />
     <Compile Include="api\ViewModels\DashboardSidePanelItemViewModel.cs" />
     <Compile Include="api\ServiceProvidersController.cs" />
+    <Compile Include="api\ViewModels\ISEServerSettingsViewModel.cs" />
     <Compile Include="api\ViewModels\ServiceProviderBriefItem.cs" />
     <Compile Include="api\ViewModels\ServiceProviderViewModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -364,14 +413,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <TypeScriptCompile Include="js\controllers\dashboard\bankid\BankIDController.ts" />
+    <TypeScriptCompile Include="js\interfaces\Dashboard\IBankIDStorage.ts" />
+    <TypeScriptCompile Include="js\models\Dashboard\BankIDSettingsViewModel.ts" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\IdentityModel.cs" />
     <Compile Include="Models\ManageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Utility\CheckConfigurationAttribute.cs" />
-    <Compile Include="Utility\DashboardAttribute.cs" />
-    <Compile Include="Utility\IdpMetadata.cs" />
+    <Compile Include="Utility\Configuration\CheckConfigurationAttribute.cs" />
+    <Compile Include="Utility\Configuration\SettingsViewModel.cs" />
+    <Compile Include="Utility\Application\Dashboard\DashboardAttribute.cs" />
+    <Compile Include="Utility\Primatives\DeepCopyByExpressionTrees.cs" />
+    <Compile Include="Utility\SAML\IdpMetadata.cs" />
+    <Compile Include="Utility\Json\Converters\IPAddressConverter.cs" />
     <Compile Include="Utility\Security\CertificateTools.cs" />
     <Compile Include="Utility\Security\SelfSignedCertificate.cs" />
   </ItemGroup>
@@ -436,6 +491,14 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="js\directives\datetimepickerDirective.js" />
     <Content Include="js\directives\nonStringSelect.js" />
+    <Content Include="App_Data\Placeholder.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\saml.config" />
+    <Content Include="App_Data\isefront.config" />
+    <Content Include="App_Data\Certificates\bcc22bbb-e447-4298-80c9-750215ccf362.pfx" />
+    <Content Include="App_Data\Certificates\SAML_hvciscoise.munchkinlan.com.cer" />
+    <None Include="package.json" />
     <Content Include="Scripts\angular-bootstrap-switch.js" />
     <Content Include="Scripts\angular-bootstrap-switch.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
@@ -462,9 +525,6 @@
     <Content Include="fonts\light-bootstrap-dashboard\Pe-icon-7-stroke.eot" />
     <Content Include="fonts\light-bootstrap-dashboard\Pe-icon-7-stroke.ttf" />
     <Content Include="fonts\light-bootstrap-dashboard\Pe-icon-7-stroke.woff" />
-    <Content Include="Certificates\idp.cer" />
-    <Content Include="Certificates\idp.pfx" />
-    <Content Include="Certificates\sp.cer" />
     <Content Include="README.md" />
     <Content Include="LICENSE.md" />
     <Content Include="Scripts\angular-moment.min.js.map" />
@@ -544,6 +604,7 @@
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -582,7 +643,11 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <None Include="tsconfig.json" />
+    <Compile Include="Utility\Configuration\Settings.cs" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -621,9 +686,12 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Dashboard\CiscoISE.cshtml" />
     <Content Include="Views\Dashboard\_certificateView.cshtml" />
+    <Content Include="Views\Dashboard\BankID.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\Verified.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Scripts\AppBindings\" />
     <Folder Include="Views\SAML\" />
   </ItemGroup>
   <ItemGroup>
@@ -637,6 +705,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="js\app\app.ts" />
+    <TypeScriptCompile Include="js\controllers\dashboard\ciscoise\CiscoIseController.ts" />
     <TypeScriptCompile Include="js\controllers\dashboard\DashboardController.ts" />
     <TypeScriptCompile Include="js\controllers\dashboard\firstrun\FirstRunController.ts" />
     <TypeScriptCompile Include="js\controllers\dashboard\identityprovider\IdentityProviderController.ts" />
@@ -644,6 +713,7 @@
     <TypeScriptCompile Include="js\controllers\dashboard\serviceproviders\EditServiceProviderViewModel.ts" />
     <TypeScriptCompile Include="js\controllers\dashboard\serviceproviders\ServiceProvidersController.ts" />
     <TypeScriptCompile Include="js\controllers\dashboard\SidePanelController.ts" />
+    <TypeScriptCompile Include="js\interfaces\Dashboard\ICiscoIseStorage.ts" />
     <TypeScriptCompile Include="js\interfaces\Dashboard\IDashboardSidePanelItemStorage.ts" />
     <TypeScriptCompile Include="js\interfaces\Dashboard\IDashboardScope.ts" />
     <TypeScriptCompile Include="js\interfaces\Dashboard\IIdentityProviderStorage.ts" />
@@ -653,33 +723,29 @@
     <TypeScriptCompile Include="js\models\Dashboard\CreateNewServiceProviderViewModel.ts" />
     <TypeScriptCompile Include="js\models\Dashboard\IdentityProviderDetailItem.ts" />
     <TypeScriptCompile Include="js\models\Dashboard\InitialConfigurationViewModel.ts" />
+    <TypeScriptCompile Include="js\models\Dashboard\ISE\GuestAccessInfoViewModel.ts" />
+    <TypeScriptCompile Include="js\models\Dashboard\ISE\GuestInfoViewModel.ts" />
+    <TypeScriptCompile Include="js\models\Dashboard\ISE\GuestUserBriefViewModel.ts" />
+    <TypeScriptCompile Include="js\models\Dashboard\ISE\GuestUserFieldViewModel.ts" />
+    <TypeScriptCompile Include="js\models\Dashboard\ISE\GuestUserViewModel.ts" />
+    <TypeScriptCompile Include="js\models\Dashboard\ISE\PortalBriefViewModel.ts" />
+    <TypeScriptCompile Include="js\models\Dashboard\ISE\PortalViewModel.ts" />
+    <TypeScriptCompile Include="js\models\Dashboard\IseServerSettingsViewModel.ts" />
+    <TypeScriptCompile Include="js\models\Dashboard\ISE\LinkViewModel.ts" />
     <TypeScriptCompile Include="js\models\Dashboard\ServiceProviderDetailItem.ts" />
     <TypeScriptCompile Include="js\models\Dashboard\DashboardSidePanelItem.ts" />
     <TypeScriptCompile Include="js\models\Dashboard\ServiceProviderBriefItem.ts" />
     <TypeScriptCompile Include="js\models\Dashboard\X509CertificateItem.ts" />
+    <TypeScriptCompile Include="js\services\Dashboard\BankIDStorage.ts" />
+    <TypeScriptCompile Include="js\services\Dashboard\CiscoIseStorage.ts" />
     <TypeScriptCompile Include="js\services\Dashboard\DashboardSidePanelItemStorage.ts" />
     <TypeScriptCompile Include="js\services\Dashboard\IdentityProviderStorage.ts" />
     <TypeScriptCompile Include="js\services\Dashboard\ServiceProvidersBriefItemStorage.ts" />
     <TypeScriptCompile Include="js\services\Dashboard\ServiceProvidersStorage.ts" />
-    <TypeScriptCompile Include="js\_all.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angular-file-upload\angular-file-upload.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\index.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-component-router.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-mocks.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-resource.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-route.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\bootstrap.v3.datetimepicker\bootstrap.v3.datetimepicker-3.0.0.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\bootstrap.v3.datetimepicker\index.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\moment\moment.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\ng-file-upload\ng-file-upload.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CiscoISE\CiscoISE.csproj">

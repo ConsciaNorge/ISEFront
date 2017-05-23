@@ -1,9 +1,3 @@
-/// <reference path='../_all.ts' />
-/**
- * The main TodoMVC app module.
- *
- * @type {angular.Module}
- */
 var dashboard;
 (function (dashboard) {
     'use strict';
@@ -13,13 +7,15 @@ var dashboard;
         'dateTimeSandbox',
         'ngFileUpload'
     ])
-        .controller('CertificatesController', dashboard.CertificatesController)
+        .controller('BankIDController', dashboard.BankIDController)
+        .controller('CiscoIseController', dashboard.CiscoIseController)
         .controller('DashboardController', dashboard.DashboardController)
-        .controller('EditServiceProviderDialogController', dashboard.EditServiceProviderDialogController)
         .controller('FirstRunController', dashboard.FirstRunController)
         .controller('IdentityProviderController', dashboard.IdentityProviderController)
         .controller('ServiceProvidersController', dashboard.ServiceProvidersController)
         .controller('SidePanelController', dashboard.SidePanelController)
+        .service('BankIDStorage', dashboard.BankIDStorage)
+        .service('CiscoIseStorage', dashboard.CiscoIseStorage)
         .service('DashboardSidePanelItemStorage', dashboard.DashboardSidePanelItemStorage)
         .service('IdentityProviderStorage', dashboard.IdentityProviderStorage)
         .service('ServiceProvidersBriefItemStorage', dashboard.ServiceProvidersBriefItemStorage)

@@ -1,4 +1,3 @@
-/// <reference path='../../../_all.ts' />
 var dashboard;
 (function (dashboard) {
     'use strict';
@@ -44,13 +43,19 @@ var dashboard;
                 this.Upload.upload({
                     url: '/api/serviceprovider/spmetadataupload',
                     method: 'POST',
-                    file: file
+                    data: {
+                        media: [file]
+                    }
+                }).abort().xhr(function (evt) {
+                    console.log("xhr");
                 }).progress(function (evt) {
-                    //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-                }).success(function (data, status, headers, config) {
-                    alert('Uploaded successfully ' + file.name);
-                }).error(function (err) {
-                    alert('Error occured during upload');
+                    var percent = parseInt((100.0 * evt.loaded / evt.total).toString(), 10);
+                    console.log("upload progress: " + percent + "% for " + evt.config.data.media[0]);
+                }).catch(function (response) {
+                    console.error(response.data, response.status, response.statusText, response.headers);
+                }).then(function (response) {
+                    // file is uploaded successfully
+                    console.log("Success!", response.data, response.status, response.headers, response.config);
                 });
             }
         };

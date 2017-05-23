@@ -16,6 +16,7 @@ using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Crypto.Parameters;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
 
 namespace ISEFront.Utility.Security
 {
@@ -101,6 +102,17 @@ namespace ISEFront.Utility.Security
             byte[] rawCertificateData
             )
         {
+            var fi = new FileInfo(outputFilePath);
+            if(!fi.Directory.Exists)
+            {
+                if(!fi.Directory.Parent.Exists)
+                {
+                    System.Diagnostics.Trace.WriteLine("Certificate storage directory cannot be created since the parent path does not exist");
+                    throw new ArgumentException("Certificate storage directory cannot be created since the parent path does not exist", "outputFilePath");
+                }
+                fi.Directory.Create();
+            }
+
             using (FileStream outStream = new FileStream(outputFilePath, FileMode.Create, FileAccess.ReadWrite))
             {
                 outStream.Write(rawCertificateData, 0, rawCertificateData.Length);
@@ -204,25 +216,42 @@ namespace ISEFront.Utility.Security
             AsymmetricKeyParameter privateKey
             )
         {
-            PrivateKeyInfo info = PrivateKeyInfoFactory.CreatePrivateKeyInfo(privateKey);
+            var rsaPrivateKey = DotNetUtilities.ToRSA(privateKey as RsaPrivateCrtKeyParameters);
 
-            Asn1Sequence seq = (Asn1Sequence)Asn1Object.FromByteArray(info.ParsePrivateKey().GetDerEncoded());
-            if (seq.Count != 9)
-                throw new PemException("malformed sequence in RSA private key");
+            // Setup RSACryptoServiceProvider with "KeyContainerName" set
+            var csp = new CspParameters();
+            csp.KeyContainerName = "KeyContainer";
 
-            var rsa = RsaPrivateKeyStructure.GetInstance(seq);
-            RsaPrivateCrtKeyParameters rsaparams =
-                new RsaPrivateCrtKeyParameters(
-                    rsa.Modulus,
-                    rsa.PublicExponent,
-                    rsa.PrivateExponent,
-                    rsa.Prime1,
-                    rsa.Prime2,
-                    rsa.Exponent1,
-                    rsa.Exponent2,
-                    rsa.Coefficient);
+            var rsaPrivate = new RSACryptoServiceProvider(csp);
 
-            x509.PrivateKey = DotNetUtilities.ToRSA(rsaparams);
+            // Import private key from BouncyCastle's rsa
+            rsaPrivate.ImportParameters(rsaPrivateKey.ExportParameters(true));
+
+            x509.PrivateKey = rsaPrivateKey; 
+
+            //PrivateKeyInfo info = PrivateKeyInfoFactory.CreatePrivateKeyInfo(privateKey);
+
+            //Asn1Sequence seq = (Asn1Sequence)Asn1Object.FromByteArray(info.ParsePrivateKey().GetDerEncoded());
+            //if (seq.Count != 9)
+            //    throw new PemException("malformed sequence in RSA private key");
+
+            //var rsa = RsaPrivateKeyStructure.GetInstance(seq);
+            //RsaPrivateCrtKeyParameters rsaparams =
+            //    new RsaPrivateCrtKeyParameters(
+            //        rsa.Modulus,
+            //        rsa.PublicExponent,
+            //        rsa.PrivateExponent,
+            //        rsa.Prime1,
+            //        rsa.Prime2,
+            //        rsa.Exponent1,
+            //        rsa.Exponent2,
+            //        rsa.Coefficient);
+
+            //CspParameters cspParams = new CspParameters();
+            //cspParams.Flags = CspProviderFlags.UseMachineKeyStore;
+            //RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(cspParams);
+
+            //x509.PrivateKey = DotNetUtilities.ToRSA(rsaparams);
 
             return x509;
         }

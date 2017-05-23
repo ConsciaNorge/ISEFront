@@ -6,13 +6,21 @@ using System.Web.Security;
 using ComponentSpace.SAML2;
 using ComponentSpace.SAML2.Utility;
 
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System.Threading.Tasks;
+using System.Linq;
+using CiscoISE.Models;
+using System;
+
 namespace ISEFront.Controllers
 {
     public class SAMLController : Controller
     {
         private const string ssoPendingSessionKey = "ssoPending";
 
-        public ActionResult SSOService()
+        public async Task<ActionResult> SSOService()
         {
             // Either an authn request has been received or login has just completed in response to a previous authn request.
             // The SSO pending session flag is false if an authn request is expected. Otherwise, it is true if
@@ -45,7 +53,60 @@ namespace ISEFront.Controllers
 
             if (string.IsNullOrEmpty(userName))
             {
-                userName = "bminion"; // User.Identity.Name;
+                var identity = (ClaimsIdentity)User.Identity;
+
+                var bid = identity.FindFirst("bid_id");
+                if(bid == null)
+                {
+                    FormsAuthentication.RedirectToLoginPage();
+                    return new EmptyResult();
+                }
+
+                userName = bid.Value;
+
+                var firstName = identity.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname");
+                var lastName = identity.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname");
+
+                var iseSettings = Utility.Configuration.Settings.IseServer;
+
+                var iseUri = new System.UriBuilder("https", iseSettings.ServerIP.ToString(), 9060);
+
+                var developerConnection = new CiscoISE.ISEConnection(iseUri.Uri, iseSettings.ApiUsername, iseSettings.ApiPassword);
+
+                var portals = await CiscoISE.Portals.Get(developerConnection);
+                if(portals == null)
+                    throw new Exception("Could not access ISE to enumerate portals");
+
+                var sponsorPortal = portals.Where(x => x.Name == "Sponsor Portal (default)").FirstOrDefault();
+                if (sponsorPortal == null)
+                    throw new Exception("Could not access ISE to find GUID for Sponsor Portal (default)");
+
+                var sponsorConnection = new CiscoISE.ISEConnection(iseUri.Uri, iseSettings.SponsorPortalUsername, iseSettings.SponsorPortalPassword);
+
+                var guestUser = await CiscoISE.GuestUsers.Get(sponsorConnection, userName);
+                if (guestUser == null)
+                {
+                    await CiscoISE.GuestUsers.Create(
+                        sponsorConnection,
+                            new GuestUserViewModel
+                            {
+                                GuestType = "Contractor (default)",
+                                PortalId = sponsorPortal.Id.ToString(),
+                                GuestInfo = new CiscoISE.GuestInfoViewModel
+                                {
+                                    Username = userName,
+                                    Password = "Minions12345",
+                                    FirstName = firstName == null ? "<unknown>" : firstName.Value,
+                                    LastName = lastName == null ? "<unknown>" : lastName.Value,
+                                    Enabled = true
+                                },
+                                GuestAccessInfo = new GuestAccessInfoViewModel
+                                {
+                                    ValidDays = 100,
+                                    Location = "San Jose"
+                                }
+                            });
+                }
             }
 
             IDictionary<string, string> attributes = new Dictionary<string, string>();

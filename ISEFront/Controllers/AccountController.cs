@@ -10,6 +10,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ISEFront.Models;
 
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OpenIdConnect;
+using Microsoft.IdentityModel.Protocols;
+
 namespace ISEFront.Controllers
 {
     [Authorize]
@@ -57,8 +61,32 @@ namespace ISEFront.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            var logger = log4net.LogManager.GetLogger("File");
+            logger.Info("Login(returnUrl = " + returnUrl +")");
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
+        }
+
+        [HttpGet]
+        [Route("~/verified")]
+        [AllowAnonymous]
+        public ActionResult Verified()
+        {
+            return RedirectToAction("SSOService", "SAML");
+            //var logger = log4net.LogManager.GetLogger("File");
+            //logger.Info("Verified");
+
+            //var identity = (ClaimsIdentity)ClaimsPrincipal.Current.Identity;
+            //ViewBag.Message1 = "(" + (identity == null ? "no current identity" : identity.Name) + ")";
+
+            //var idToken = identity.FindFirst(OpenIdConnectParameterNames.IdToken);
+            //ViewBag.IDToken = "(idToken = " + (idToken == null ? "<null>" : idToken.Value) + ")";
+
+            //var bid = identity.FindFirst("bid_id");
+            //ViewBag.bid = "(bid = " + (bid == null ? "<null>" : bid.Value) + ")";
+
+            //return View();
         }
 
         //
@@ -68,6 +96,9 @@ namespace ISEFront.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            var logger = log4net.LogManager.GetLogger("File");
+            logger.Info("[POST] Login(returnUrl = " + returnUrl + ")");
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -278,6 +309,9 @@ namespace ISEFront.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
+            var logger = log4net.LogManager.GetLogger("File");
+            logger.Info("ExternalLogin(provider = " + provider + ", returnUrl = " + returnUrl + ")");
+
             // Request a redirect to the external login provider
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
@@ -322,10 +356,47 @@ namespace ISEFront.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
+            var logger = log4net.LogManager.GetLogger("File");
+            logger.Info("ExternalLoginCallback(returnUrl = " + returnUrl + ")");
+
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
-                return RedirectToAction("Login");
+                var identity = (ClaimsIdentity)ClaimsPrincipal.Current.Identity;
+                if (identity == null)
+                {
+                    logger.Info("    identity == null");
+                }
+                else
+                {
+                    var access_token = identity.FindFirst(OpenIdConnectParameterNames.AccessToken);
+                    if(access_token == null)
+                    {
+                        logger.Info("    access_token.value = null");
+                    }
+                    else {
+                        logger.Info("    access_token.value = " + access_token.Value);
+                    }
+                    var id_token = identity.FindFirst(OpenIdConnectParameterNames.IdToken);
+                    if (id_token == null)
+                    {
+                        logger.Info("    id_token.value = null");
+                    }
+                    else
+                    {
+                        logger.Info("    id_token.value = " + id_token.Value);
+                    }
+
+                    // TODO : Is this the right path to take?
+                    if (access_token != null && id_token != null)
+                    {
+                        logger.Info("      RedirectToAction(returnUrl)");
+                        return RedirectToLocal(returnUrl);
+                    }
+                }
+
+                logger.Info("    RedirectToAction(\"SAML/SSOService\")");
+                return RedirectToAction("SSOService", "SAML");
             }
 
             // Sign in the user with this external login provider if the user already has a login
@@ -333,13 +404,19 @@ namespace ISEFront.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    logger.Info("    SignInStatus.Success");
+                    logger.Info("      RedirectToAction(returnUrl)");
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
+                    logger.Info("    SignInStatus.Success");
+                    logger.Info("      View(\"Lockout\")");
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
                 case SignInStatus.Failure:
                 default:
+                    logger.Info("    SignInStatus.Failure || default");
+                    logger.Info("      View(\"ExternalLoginConfirmation\")");
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
@@ -354,6 +431,9 @@ namespace ISEFront.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
+            var logger = log4net.LogManager.GetLogger("File");
+            logger.Info("ExternalLoginConfirmation(returnUrl = " + returnUrl + ")");
+
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Manage");
@@ -391,6 +471,9 @@ namespace ISEFront.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            var logger = log4net.LogManager.GetLogger("File");
+            logger.Info("Logoff()");
+
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }

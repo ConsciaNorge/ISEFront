@@ -1,6 +1,4 @@
-﻿/// <reference path='../../_all.ts' />
-
-module dashboard {
+﻿namespace dashboard {
     export interface IServiceProvidersBriefStorage {
         get(): ng.IPromise<ServiceProviderBriefItem[]>;
     }

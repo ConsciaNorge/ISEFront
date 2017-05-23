@@ -685,4 +685,5 @@
             };
         }]);
 })(window, window.angular);
+//# sourceMappingURL=angular-sanitize.js.map 
 //# sourceMappingURL=angular-sanitize.js.map

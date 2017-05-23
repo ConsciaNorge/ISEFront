@@ -4,13 +4,109 @@
     Layout = "~/Views/Dashboard/Layout/_dashboardLayout.cshtml";
 }
 
-<div class="col-md-12" ng-controller="CertificatesController as certificatesVm">
+<div class="col-md-12" ng-controller="CiscoIseController as ciVm">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Cisco ISE
+            Cisco ISE Server Settings
         </div>
 
         <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Server IP</label>
+                        <input type="text" class="form-control" ng-model="ciVm.serverSettings.serverIP" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">API Username</label>
+                        <input type="text" class="form-control" ng-model="ciVm.serverSettings.apiUsername" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">API Password</label>
+                        <input type="password" class="form-control" ng-model="ciVm.serverSettings.apiPassword" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Sponsor portal username</label>
+                        <input type="text" class="form-control" ng-model="ciVm.serverSettings.sponsorPortalUsername" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Sponsor portal password</label>
+                        <input type="password" class="form-control" ng-model="ciVm.serverSettings.sponsorPortalPassword" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="pull-left">
+                                <button ng-click="ciVm.save()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Cisco ISE Portals
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Portal name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="portal in ciVm.portals">
+                        <td>
+                            <label>
+                                <input type="radio" name="portals" ng-model="portal.id" ng-change="ciVm.portalSelected('{{portal.id}}')">
+                                {{portal.id}}
+                            </label>
+                        </td>
+                        <td>{{portal.name}}</td>
+                        <td>{{portal.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Cisco ISE Guest Users
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in ciVm.guestUsers">
+                        <td>{{user.id}}</td>
+                        <td>{{user.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

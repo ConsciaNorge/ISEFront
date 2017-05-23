@@ -180,7 +180,7 @@ namespace ISEFront.api.ViewModels
                         var entityDescriptor = new EntityDescriptor(xmlDocument.DocumentElement);
                         IList<X509Certificate2> x509Certificates = new List<X509Certificate2>();
 
-                        var certificatePath = new DirectoryInfo(System.Web.Hosting.HostingEnvironment.MapPath("~/Certificates"));
+                        var certificatePath = new DirectoryInfo(System.Web.Hosting.HostingEnvironment.MapPath("~/app_data/Certificates"));
 
                         ComponentSpace.SAML2.Configuration.MetadataImporter.Import(entityDescriptor, ComponentSpace.SAML2.SAMLController.Configuration, x509Certificates);
 

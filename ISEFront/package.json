@@ -1,0 +1,13 @@
+{
+  "name": "ISEFront",
+  "description": "Conscia ISEFront",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@types/angular": "^1.6.16",
+    "@types/bootstrap-datepicker": "0.0.6",
+    "@types/bootstrap.v3.datetimepicker": "^4.17.38",
+    "@types/moment": "^2.13.0",
+    "@types/ng-file-upload": "^12.2.0"
+  }
+}

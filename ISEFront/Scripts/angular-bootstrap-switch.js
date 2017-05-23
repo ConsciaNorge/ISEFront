@@ -266,4 +266,5 @@
     });
     // Source: bsSwitch.suffix
 })();
+//# sourceMappingURL=angular-bootstrap-switch.js.map 
 //# sourceMappingURL=angular-bootstrap-switch.js.map
