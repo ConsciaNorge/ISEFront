@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -48,7 +49,14 @@ namespace CiscoISE
 
         public static async Task<GuestUserViewModel> Get(ISEConnection connection, string name)
         {
-            var response = await connection.RestGet("config/guestuser/name/" + name);
+            HttpResponseMessage response;
+            try
+            {
+                response = await connection.RestGet("config/guestuser/name/" + name);
+            } catch {
+                System.Diagnostics.Trace.WriteLine("Failed to get result from config/guestuser/name/" + name, "ISEError");
+                return null;
+            }
 
             if (response.IsSuccessStatusCode)
             {

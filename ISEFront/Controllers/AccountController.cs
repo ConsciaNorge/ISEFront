@@ -13,6 +13,7 @@ using ISEFront.Models;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols;
+using System.Threading;
 
 namespace ISEFront.Controllers
 {
@@ -504,6 +505,22 @@ namespace ISEFront.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        [AllowAnonymous]
+        public ActionResult ChangeLoginPageLanguage(string SelectedLanguage, string ReturnUrl)
+        {
+            if (SelectedLanguage != null)
+            {
+                Thread.CurrentThread.CurrentCulture =
+                    CultureInfo.CreateSpecificCulture(SelectedLanguage);
+                Thread.CurrentThread.CurrentUICulture =
+                    new CultureInfo(SelectedLanguage);
+                var cookie = new HttpCookie("Language");
+                cookie.Value = SelectedLanguage;
+                Response.Cookies.Add(cookie);
+            }
+            return RedirectToAction("Login", new { ReturnUrl = ReturnUrl });
         }
 
         #region Helpers

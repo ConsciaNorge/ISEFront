@@ -91,6 +91,7 @@ namespace ISEFront
                     ResponseType = "code id_token",     // This code may crash if you change ResponseType
                     Scope = bankIdSettings.Scope.ToString(),
                     SignInAsAuthenticationType = "Cookies",
+                    Caption = "Norsk Bank ID",
 
                     Notifications = new OpenIdConnectAuthenticationNotifications
                     {

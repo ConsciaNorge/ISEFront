@@ -27,6 +27,7 @@ namespace CiscoISE.Models
         public string ReasonForVisit { get; set; }
         [JsonProperty("statusReason", NullValueHandling = NullValueHandling.Ignore)]
         public string StatusReason { get; set; }
+        // TODO : Consider changing portalId to Guid and adding validators
         [JsonProperty("portalId", NullValueHandling = NullValueHandling.Ignore)]
         public string PortalId { get; set; }
     }

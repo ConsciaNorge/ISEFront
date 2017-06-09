@@ -3,6 +3,7 @@ using CiscoISE.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Linq;
 
 namespace CiscoISE.Tests
 {
@@ -12,7 +13,9 @@ namespace CiscoISE.Tests
         public Uri baseUrl = new Uri("https://hvciscoise.munchkinlan.com:9060");
         public string username = "sponsoruser";
         public string password = "Minions12345";
-        public string guestPortal = "4c3ca030-e371-11e6-92ce-005056873bd0";
+        public string developerUsername = "developer";
+        public string developerPassword = "Minions12345";
+
 
         [TestMethod]
         public async Task GetAllUsers()
@@ -36,11 +39,12 @@ namespace CiscoISE.Tests
         public async Task SuspendUser()
         {
             var connection = new ISEConnection(baseUrl, username, password);
+            var developerConnection = new ISEConnection(baseUrl, developerUsername, developerPassword);
 
             var deleteOk = await DeleteUserIfExist(connection, "dummyuser");
             Assert.IsTrue(deleteOk, "User already exists and cannot be delete");
 
-            var createOk = await CreateValidNewUser(connection, "dummyuser");
+            var createOk = await CreateValidNewUser(developerConnection, connection, "dummyuser");
             Assert.IsTrue(createOk, "Failed to create user");
 
             Trace.WriteLine("Getting record of new user");
@@ -61,11 +65,12 @@ namespace CiscoISE.Tests
         public async Task CreateandDeleteUser()
         {
             var connection = new ISEConnection(baseUrl, username, password);
+            var developerConnection = new ISEConnection(baseUrl, developerUsername, developerPassword);
 
             var deleteOk = await DeleteUserIfExist(connection, "dummyuser");
             Assert.IsTrue(deleteOk, "User already exists and cannot be delete");
 
-            var createOk = await CreateValidNewUser(connection, "dummyuser");
+            var createOk = await CreateValidNewUser(developerConnection, connection, "dummyuser");
             Assert.IsTrue(createOk, "Failed to create user");
 
             Trace.WriteLine("Getting record of new user");
@@ -91,15 +96,25 @@ namespace CiscoISE.Tests
             return true;
         }
 
-        private async Task<bool> CreateValidNewUser(ISEConnection connection, string username)
+        private async Task<bool> CreateValidNewUser(
+            ISEConnection developerConnection,
+            ISEConnection connection, 
+            string username)
         {
+            Trace.WriteLine("Getting Sponsor Portal ID");
+            var portals = await CiscoISE.Portals.Get(developerConnection);
+            Assert.IsNotNull(portals, "Failed to get portals");
+
+            var sponsorPortal = portals.Where(x => x.Name == "Sponsor Portal (default)").FirstOrDefault();
+            Assert.IsNotNull(sponsorPortal, "Failed to find sponsor portal in list of portals");
+
             Trace.WriteLine("Creating new user");
             return await CiscoISE.GuestUsers.Create(
                 connection,
                 new GuestUserViewModel
                 {
                     GuestType = "Contractor (default)",
-                    PortalId = guestPortal,
+                    PortalId = sponsorPortal.Id.ToString(),
                     GuestInfo = new GuestInfoViewModel
                     {
                         Username = username,

@@ -401,6 +401,11 @@
     <Compile Include="api\ViewModels\ISEServerSettingsViewModel.cs" />
     <Compile Include="api\ViewModels\ServiceProviderBriefItem.cs" />
     <Compile Include="api\ViewModels\ServiceProviderViewModel.cs" />
+    <Compile Include="App_GlobalResources\content.no.Designer.cs">
+      <DependentUpon>content.no.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -420,6 +425,11 @@
     <Compile Include="Models\IdentityModel.cs" />
     <Compile Include="Models\ManageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App_GlobalResources\content.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>content.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utility\Configuration\CheckConfigurationAttribute.cs" />
     <Compile Include="Utility\Configuration\SettingsViewModel.cs" />
@@ -447,8 +457,14 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\2016-09-30-Microsoft-Azure-Logo.png" />
+    <Content Include="Content\images\conscialogo.png" />
+    <Content Include="Content\images\flags.jpg" />
     <Content Include="Content\images\MinID1.jpg" />
     <Content Include="Content\images\norskbankid.png" />
+    <Content Include="Content\images\norskbankid_48px_high.png" />
+    <Content Include="Content\images\norskbankid_full.png" />
+    <Content Include="Content\images\norskminid_48px_high.png" />
+    <Content Include="Content\images\norskminid_full.png" />
     <Content Include="Content\light-bootstrap-dashboard\images\default-avatar.png" />
     <Content Include="Content\light-bootstrap-dashboard\images\faces\face-0.jpg" />
     <Content Include="Content\light-bootstrap-dashboard\images\faces\face-1.jpg" />
@@ -471,6 +487,7 @@
     <Content Include="Content\light-bootstrap-dashboard\images\tim_80x80.png" />
     <Content Include="Content\light-bootstrap-dashboard\light-bootstrap-dashboard.css" />
     <Content Include="Content\light-bootstrap-dashboard\pe-icon-7-stroke.css" />
+    <Content Include="Content\loginscreen.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -752,6 +769,16 @@
       <Project>{6bdf5788-cd1c-4c64-b29a-3a809dc1c1f1}</Project>
       <Name>CiscoISE</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_GlobalResources\content.no.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>content.no.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\content.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>content.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
