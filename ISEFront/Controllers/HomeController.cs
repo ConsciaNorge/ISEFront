@@ -3,14 +3,6 @@ using System.Web.Mvc;
 
 namespace ISEFront.Controllers
 {
-    public static class AppSettings
-    {
-        public const string Attribute = "Attribute";
-        public const string PartnerSP = "PartnerSP";
-        public const string SubjectName = "SubjectName";
-        public const string TargetUrl = "TargetUrl";
-    }
-
     [CheckConfiguration("Dashboard", "FirstRun")]
     public class HomeController : Controller
     {
