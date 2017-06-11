@@ -4,7 +4,6 @@
 
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
-
     var bankIdProvider = loginProviders.Where(x => x.Caption == "Norsk Bank ID").FirstOrDefault();
 
     <div class="row">

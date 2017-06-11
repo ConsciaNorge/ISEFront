@@ -1,0 +1,35 @@
+﻿.loginoption:hover {
+    background-color: gainsboro;
+    height: 70px;
+}
+
+.logoimageframe {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.logoimageframe img {
+    display: inline-block;
+    vertical-align: middle;
+    max-height: 48px;
+}
+
+.flagContainer {
+    width: 83px;
+    height: 83px;
+    overflow: hidden;
+}
+
+#clipUS {
+    position: relative;
+    left: -1499px;
+    top: -989px;
+}
+
+#clipNO {
+    position: relative;
+    left: -1222px;
+    top: -881px;
+}
+
