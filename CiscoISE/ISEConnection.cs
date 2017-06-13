@@ -111,7 +111,7 @@ namespace CiscoISE
             {
                 json = JsonConvert.SerializeObject(
                     data,
-                    new IsoDateTimeConverter { DateTimeFormat = "MM/dd/yyyy hh:mm" }
+                    new IsoDateTimeConverter { DateTimeFormat = "MM/dd/yyyy HH:mm" }
                     );
             }
 
