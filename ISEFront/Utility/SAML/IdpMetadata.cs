@@ -100,6 +100,7 @@ namespace ISEFront.Utility.SAML
             organization.OrganizationURLs.Add(new OrganizationURL(entityUrl.ToString(), "en"));
             entityDescriptor.Organization = organization;
 
+            // TODO : Add configuration options for contact information
             ContactPerson contactPerson = new ContactPerson();
             contactPerson.ContactTypeValue = "technical";
             contactPerson.GivenName = "Joe";

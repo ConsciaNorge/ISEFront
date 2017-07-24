@@ -126,7 +126,7 @@ namespace CiscoISE
         public async Task<bool> RestPost(string relativeUrl, HttpStatusCode successCode, object data = null)
         {
             var postResult = await RestPost(relativeUrl, data)
-                .ContinueWith(task =>
+                .ContinueWith(async task =>
                 {
                     var response = task.Result;
                     if (response.StatusCode == successCode)
@@ -135,12 +135,15 @@ namespace CiscoISE
                     }
                     else
                     {
+                        var json = await response.Content.ReadAsStringAsync();
+
                         System.Diagnostics.Debug.WriteLine("Fail to post : " + response.ReasonPhrase);
+                        System.Diagnostics.Trace.TraceError("Failed to post\n" + response.ReasonPhrase + "\n" + json);
                         return false;
                     }
                 });
 
-            return postResult;
+            return await postResult;
         }
 
         public async Task<HttpResponseMessage> RestDelete(string relativeUrl)

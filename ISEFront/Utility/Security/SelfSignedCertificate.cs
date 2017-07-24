@@ -211,6 +211,16 @@ namespace ISEFront.Utility.Security
             return x509;
         }
 
+        public static RSA ToRSA(RsaKeyParameters rsaKey)
+        {
+            RSAParameters rp = DotNetUtilities.ToRSAParameters(rsaKey);
+
+            RSACryptoServiceProvider rsaCsp = new RSACryptoServiceProvider();
+            rsaCsp.ImportParameters(rp);
+
+            return rsaCsp;
+        }
+
         private static X509Certificate2 SetPrivateKey(
             X509Certificate2 x509,
             AsymmetricKeyParameter privateKey

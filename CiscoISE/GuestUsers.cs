@@ -203,6 +203,11 @@ namespace CiscoISE
             if (!user.GuestAccessInfo.ToDate.HasValue)
                 user.GuestAccessInfo.ToDate = user.GuestAccessInfo.FromDate.Value.AddDays(user.GuestAccessInfo.ValidDays - 1);
 
+            // Adjust local time to server time (currently, we assume UTC)
+            // TODO : Fetch time zone information from the ISE server
+            user.GuestAccessInfo.FromDate = user.GuestAccessInfo.FromDate.Value.ToUniversalTime();
+            user.GuestAccessInfo.ToDate = user.GuestAccessInfo.ToDate.Value.ToUniversalTime();
+
             return await connection.RestPost(
                 "config/guestuser",
                 HttpStatusCode.Created,

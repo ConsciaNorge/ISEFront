@@ -1,25 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using CiscoISE.Models;
+using ComponentSpace.SAML2;
+using ComponentSpace.SAML2.Assertions;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Security;
-
-using ComponentSpace.SAML2;
-using ComponentSpace.SAML2.Utility;
-
-using System.Security.Claims;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using System.Threading.Tasks;
-using System.Linq;
-using CiscoISE.Models;
-using System;
 
 namespace ISEFront.Controllers
 {
     // TODO: This has to go!!! Stop using WebConfigurationManager
     public static class AppSettings
     {
-        public const string Attribute = "Attribute";
         public const string PartnerSP = "PartnerSP";
         public const string SubjectName = "SubjectName";
         public const string TargetUrl = "TargetUrl";
@@ -31,7 +27,7 @@ namespace ISEFront.Controllers
 
         public async Task<ActionResult> SSOService()
         {
-            var logger = log4net.LogManager.GetLogger("SAML");
+            var logger = log4net.LogManager.GetLogger("SAMLController");
 
             logger.Info("SSOService() - Single sign-on service entered");
 
@@ -70,12 +66,12 @@ namespace ISEFront.Controllers
             // Respond to the authn request by sending a SAML response containing a SAML assertion to the SP.
             // Use the configured or logged in user name as the user name to send to the service provider (SP).
             // Include some user attributes.
-            string userName = WebConfigurationManager.AppSettings[AppSettings.SubjectName];
+            var userName = WebConfigurationManager.AppSettings[AppSettings.SubjectName];
+
+            var identity = (ClaimsIdentity)User.Identity;
 
             if (string.IsNullOrEmpty(userName))
             {
-                var identity = (ClaimsIdentity)User.Identity;
-
                 var bid = identity.FindFirst("bid_id");
                 if (bid == null)
                 {
@@ -116,7 +112,11 @@ namespace ISEFront.Controllers
 
                 logger.Debug("Finding an existing guest user with username : " + userName);
                 var guestUser = await CiscoISE.GuestUsers.Get(sponsorConnection, userName);
-                if (guestUser == null)
+                if (guestUser != null)
+                {
+                    logger.Debug("Retrieved user " + userName + " from ISE server\n" + JsonConvert.SerializeObject(guestUser));
+                }
+                else
                 {
                     logger.Info("Existing user (" + userName + ") not found, attempt to create a new one");
 
@@ -160,10 +160,15 @@ namespace ISEFront.Controllers
 
                     logger.Info("Using first guest location from the list " + guestLocation.Name);
 
-                    var randomPassword = Membership.GeneratePassword(16, 4);
+                    //var randomPassword = Membership.GeneratePassword(16, 4);
+                    var randomPassword = CiscoISE.Utility.PasswordGenerator.GenerateStrongGuestPassword();
 
                     // TODO : Consider removing this from the code. Though, the password is not used anywhere, it could be a "alarm" during a code audit
                     logger.Info("Automatically generated a password for the new user (" + randomPassword + ")");
+
+                    // TODO : Add configuration settings to specify the duration which a guest account is valid
+                    var validFrom = DateTime.Now;
+                    var validUntil = validFrom.AddHours(4);
 
                     guestUser = new GuestUserViewModel
                     {
@@ -179,7 +184,9 @@ namespace ISEFront.Controllers
                         },
                         GuestAccessInfo = new GuestAccessInfoViewModel
                         {
-                            ValidDays = 100,
+                            ValidDays = 1,
+                            FromDate = validFrom,
+                            ToDate = validUntil,
                             Location = guestLocation.Name // TODO : File "bug" with Cisco over name reference instead of ID
                         }
                     };
@@ -197,19 +204,53 @@ namespace ISEFront.Controllers
                 }
             }
 
-            logger.Info("Appending attributes to SAML assertion");
-            IDictionary<string, string> attributes = new Dictionary<string, string>();
-            foreach (string key in WebConfigurationManager.AppSettings.Keys)
+            var ClaimToAttributes = new []
             {
-                if (key.StartsWith(AppSettings.Attribute))
+                new {
+                    claimType = Microsoft.IdentityModel.Protocols.OpenIdConnectParameterNames.AccessToken,
+                    samlAttributeName = "bidAccessToken"
+                },
+                new {
+                    claimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth",
+                    samlAttributeName = "dateofbirth"
+                },
+                new {
+                    claimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
+                    samlAttributeName = "givenname"
+                },
+                new {
+                    claimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
+                    samlAttributeName = "surname"
+                },
+                new {
+                    claimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+                    samlAttributeName = "name"
+                }
+            };
+
+            logger.Info("Appending attributes to SAML assertion");
+            var samlAttributes = new List<SAMLAttribute>();
+            foreach(var claimToAttribute in ClaimToAttributes)
+            {
+                var claim = identity.FindFirst(claimToAttribute.claimType);
+                if (claim != null)
                 {
-                    attributes[key.Substring(AppSettings.Attribute.Length + 1)] = WebConfigurationManager.AppSettings[key];
+
+                    var attribute = new SAMLAttribute(
+                            claimToAttribute.samlAttributeName,
+                            SAMLIdentifiers.AttributeNameFormats.Unspecified,
+                            null,
+                            "xs:string",
+                            claim.Value
+                            );
+
+                    samlAttributes.Add(attribute);
                 }
             }
 
-            //ComponentSpace.SAML2.SAMLController.TraceLevel = System.Diagnostics.TraceLevel.Verbose;
+            ComponentSpace.SAML2.SAMLController.TraceLevel = System.Diagnostics.TraceLevel.Verbose;
             logger.Info("Sending SSO to SAML service provider");
-            SAMLIdentityProvider.SendSSO(Response, userName, attributes);
+            SAMLIdentityProvider.SendSSO(Response, userName, samlAttributes.ToArray());
 
             return new EmptyResult();
         }
@@ -243,44 +284,6 @@ namespace ISEFront.Controllers
                     Response.Redirect("~/");
                 }
             }
-
-            return new EmptyResult();
-        }
-
-        public ActionResult ECP()
-        {
-            // Receive an authn request from an enhanced client or proxy (ECP).
-            string partnerSP = null;
-
-            SAMLIdentityProvider.ReceiveSSO(Request, out partnerSP);
-
-            // In this example, the user's credentials are assumed to be included in the HTTP authorization header.
-            // The application should authenticate the user against some user registry.
-            // In this example, the credentials are assumed to be valid and no check is made.
-            string userName = null;
-            string password = null;
-
-            HttpBasicAuthentication.GetAuthorizationHeader(Request, out userName, out password);
-
-            // Respond to the authn request by sending a SAML response containing a SAML assertion to the SP.
-            // Use the configured or logged in user name as the user name to send to the service provider (SP).
-            // Include some user attributes.
-            if (!string.IsNullOrEmpty(WebConfigurationManager.AppSettings[AppSettings.SubjectName]))
-            {
-                userName = WebConfigurationManager.AppSettings[AppSettings.SubjectName];
-            }
-
-            IDictionary<string, string> attributes = new Dictionary<string, string>();
-
-            foreach (string key in WebConfigurationManager.AppSettings.Keys)
-            {
-                if (key.StartsWith(AppSettings.Attribute))
-                {
-                    attributes[key.Substring(AppSettings.Attribute.Length + 1)] = WebConfigurationManager.AppSettings[key];
-                }
-            }
-
-            SAMLIdentityProvider.SendSSO(Response, userName, attributes);
 
             return new EmptyResult();
         }

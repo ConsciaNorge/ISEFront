@@ -1,19 +1,15 @@
-﻿using System;
+﻿using ISEFront.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.IdentityModel.Protocols;
+using Microsoft.Owin.Security;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using ISEFront.Models;
-
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OpenIdConnect;
-using Microsoft.IdentityModel.Protocols;
-using System.Threading;
 
 namespace ISEFront.Controllers
 {

@@ -104,7 +104,7 @@ namespace ISEFront
                             {
                                 // Add custom parameters for BID OIDC here:
                                 string login_hint = context.OwinContext.Get<string>(OpenIdConnectParameterNames.LoginHint);
-                                login_hint = "BID:02119206106";
+                                //login_hint = "BID:02119206106";
                                 if (!string.IsNullOrEmpty(login_hint))
                                 {
                                     // If going thru Azure AD/B2C we need to use custom login_hint:
@@ -227,7 +227,6 @@ namespace ISEFront
                     { OpenIdConnectParameterNames.GrantType, "authorization_code" },
                     { OpenIdConnectParameterNames.RedirectUri, context.Options.RedirectUri }
                 };
-
 
                 request.Content = new FormUrlEncodedContent(reqDictionary);
 
